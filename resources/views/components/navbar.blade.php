@@ -13,8 +13,9 @@
                 </svg>
             </button>
             <a href="{{ url('/') }}" class="xl:hidden">
-                <img class="dark:hidden" src="{{ asset('images/logo.svg') }}" alt="Logo">
-                <img class="hidden dark:block" src="{{ asset('images/logo-dark.svg') }}" alt="Logo">
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white/90">Bimbel SMART</h1>
+                {{-- <img class="dark:hidden" src="{{ asset('images/logo.svg') }}" alt="Logo"> --}}
+                {{-- <img class="hidden dark:block" src="{{ asset('images/logo-dark.svg') }}" alt="Logo"> --}}
             </a>
         </div>
 
