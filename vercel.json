@@ -6,12 +6,12 @@
     },
     "routes": [
         {
-            "src": "/css/(.*)",
-            "dest": "/public/css"
+            "src": "/(css|js)/(.*)",
+            "dest": "/public/$1/$2"
         },
         {
-            "src": "/(.*\\.(?:css|js|jpg|jpeg|png|gif|ico|svg|webp|woff|woff2|ttf|eot))",
-            "dest": "/public/$1"
+            "src": "/images/(.*)",
+            "dest": "/public/images"
         },
         {
             "src": "/(.*)",
