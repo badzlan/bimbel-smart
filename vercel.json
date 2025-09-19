@@ -1,12 +1,9 @@
 {
     "version": 2,
+    "outputDirectory": "public",
     "builds": [
         {
-            "src": "/public/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "/api/index.php",
+            "src": "api/index.php",
             "use": "vercel-php@0.7.4"
         }
     ],
