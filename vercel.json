@@ -5,7 +5,8 @@
     },
     "routes": [
         {
-            "handle": "filesystem"
+            "src": "/(css|js|images|fonts|svg|assets|favicon.ico|robots.txt|storage)(.*)",
+            "dest": "/public/$1$2"
         },
         {
             "src": "/(.*)",
@@ -17,14 +18,12 @@
         "APP_DEBUG": "false",
         "APP_URL": "https://bimbelsmart.vercel.app",
         "APP_KEY": "base64:qZh1r+k10hwA0KNFGe8f4camOKI4HqFxMG7OdspcOiw=",
-
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
         "APP_ROUTES_CACHE": "/tmp/routes.php",
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp",
-
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
