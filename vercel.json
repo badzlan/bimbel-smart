@@ -6,6 +6,9 @@
     },
     "routes": [
         {
+            "handle": "filesystem"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
@@ -13,7 +16,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://bimbel-smart.vercel.app",
+        "APP_URL": "https://bimbelsmart.vercel.app",
         "APP_KEY": "base64:qZh1r+k10hwA0KNFGe8f4camOKI4HqFxMG7OdspcOiw=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
