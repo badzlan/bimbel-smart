@@ -6,7 +6,8 @@
                 {{-- <img class="dark:hidden" src="{{ asset('images/logo.svg') }}" alt="Logo"> --}}
                 {{-- <img class="hidden dark:block" src="{{ asset('images/logo-dark.svg') }}" alt="Logo"> --}}
             </span>
-            <img class="logo-icon" :class="sidebarToggle ? 'xl:block' : 'hidden'" src="{{ asset('images/logo-icon.svg') }}" alt="Logo">
+            {{-- <img class="logo-icon" :class="sidebarToggle ? 'xl:block' : 'hidden'" src="{{ asset('images/logo-icon.svg') }}" alt="Logo"> --}}
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white/90" :class="sidebarToggle ? 'xl:block' : 'hidden'">BS</h1>
         </a>
     </div>
     <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
