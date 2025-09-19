@@ -1,5 +1,4 @@
-<aside :class="sidebarToggle ? 'translate-x-0 xl:w-[90px]' : '-translate-x-full'" class="sidebar fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 xl:static xl:translate-x-0 dark:border-gray-800 dark:bg-black" @click.outside="sidebarToggle = false">
-    <div :class="sidebarToggle ? 'justify-center' : 'justify-between'" class="sidebar-header flex items-center gap-2 pt-8 pb-7">
+<aside :class="sidebarToggle ? 'translate-x-0 xl:w-[90px]' : '-translate-x-full'" class="fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 xl:static xl:translate-x-0 dark:border-gray-800 dark:bg-black" @click.outside="sidebarToggle = false">    <div :class="sidebarToggle ? 'justify-center' : 'justify-between'" class="sidebar-header flex items-center gap-2 pt-8 pb-7">
         <a href="{{ url('/') }}">
             <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
                 <h1 class="text-2xl font-bold text-gray-800 dark:text-white/90">Bimbel SMART</h1>
