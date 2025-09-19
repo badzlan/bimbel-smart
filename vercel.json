@@ -1,13 +1,16 @@
 {
     "version": 2,
-    "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.7.4" }
-    },
-    "routes": [
+    "builds": [
         {
-            "src": "/(css|js|images|fonts|svg|assets|favicon.ico|robots.txt|storage)(.*)",
-            "dest": "/public/$1$2"
+            "src": "/public/**",
+            "use": "@vercel/static"
         },
+        {
+            "src": "/api/index.php",
+            "use": "vercel-php@0.7.4"
+        }
+    ],
+    "routes": [
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
