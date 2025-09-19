@@ -8,7 +8,7 @@
             {{ $title ?? 'Dashboard' }} | Bimbel SMART
         </title>
 
-        <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
 
