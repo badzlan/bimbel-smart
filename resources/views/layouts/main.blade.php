@@ -21,13 +21,19 @@
         @include('components.preloader')
 
         <div class="flex h-screen overflow-hidden">
+
             @include('components.sidebar')
+
             <div class="relative flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
                 <div :class="sidebarToggle ? 'block xl:hidden' : 'hidden'" class="fixed z-50 h-screen w-full bg-gray-900/50"></div>
+
                 @include('components.navbar')
+
                 <main>
                     <div class="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">
+
                         @yield('content')
+
                     </div>
                 </main>
                 </div>

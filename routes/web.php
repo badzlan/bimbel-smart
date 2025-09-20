@@ -18,9 +18,16 @@ Route::get('/', function () {
     return redirect('/signin');
 });
 
+// Auth
 Route::get('/signin', function () {
     return view('pages.auth.signin', [
         'title' => 'Sign In'
+    ]);
+});
+
+Route::get('/forgot-password', function () {
+    return view('pages.auth.forgot-password', [
+        'title' => 'Forgot Password'
     ]);
 });
 
@@ -28,6 +35,8 @@ Route::get('/signout', function () {
     return redirect('/signin');
 });
 
+
+// Admin
 Route::get('/dashboard', function () {
     return view('pages.dashboard', [
         'title' => 'Dashboard'
@@ -35,5 +44,7 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/profile', function () {
-    return view('pages.profile');
+    return view('pages.profile', [
+        'title' => 'Profile'
+    ]);
 });

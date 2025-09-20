@@ -49,7 +49,7 @@
                     <div class="mt-5">
                         <p class="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
                             Lupa password anda?
-                            <a href="{{ url('/signup') }}" class="text-brand-500 hover:text-brand-600 dark:text-brand-400">Klik disini</a>
+                            <a href="{{ url('/forgot-password') }}" class="text-brand-500 hover:text-brand-600 dark:text-brand-400">Klik disini</a>
                         </p>
                     </div>
                     <div class="relative py-3 sm:py-5">

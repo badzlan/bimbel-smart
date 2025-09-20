@@ -9,15 +9,17 @@
         </title>
         <link rel="icon" href="{{ asset('images/favicon.ico') }}">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <script defer src="{{ asset('js/s.js') }}"></script>
+        <script defer src="{{ asset('js/bundle.js') }}"></script>
     </head>
     <body
         x-data="{ 'darkMode': false }"
         x-init="
             darkMode = JSON.parse(localStorage.getItem('darkMode'));
             $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
-        :class="{'dark': darkMode === true}"
-    >
+        :class="{'dark': darkMode === true}" >
+
+        {{-- @include('components.preloader') --}}
+
         <div class="relative z-1 bg-white p-6 sm:p-0 dark:bg-gray-900">
             <div class="relative flex h-screen w-full flex-col justify-center sm:p-0 lg:flex-row dark:bg-gray-900">
 
