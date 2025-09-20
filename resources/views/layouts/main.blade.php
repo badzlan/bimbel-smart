@@ -7,7 +7,7 @@
         <title>
             {{ $title ?? 'Dashboard' }} | Bimbel SMART
         </title>
-        <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+        <link rel="icon" href="{{ asset('images/logo.png') }}">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <script defer src="{{ asset('js/s.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
