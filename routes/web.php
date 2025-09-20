@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
+    return redirect('/signin');
+});
+
+Route::get('/signin', function () {
+    return view('pages.auth.signin', [
+        'title' => 'Sign In'
+    ]);
+});
+
+Route::get('/dashboard', function () {
     return view('pages.dashboard', [
         'title' => 'Dashboard'
     ]);
