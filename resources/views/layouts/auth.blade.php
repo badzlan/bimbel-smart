@@ -4,14 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
         <title>
             {{ $title ?? 'Sign In' }} | Bimbel SMART
         </title>
-
         <link rel="icon" href="{{ asset('images/favicon.ico') }}">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <script defer src="{{ asset('js/bundle.js') }}"></script>
+        <script defer src="{{ asset('js/s.js') }}"></script>
     </head>
     <body
         x-data="{ 'darkMode': false }"

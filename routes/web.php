@@ -24,6 +24,10 @@ Route::get('/signin', function () {
     ]);
 });
 
+Route::get('/signout', function () {
+    return redirect('/signin');
+});
+
 Route::get('/dashboard', function () {
     return view('pages.dashboard', [
         'title' => 'Dashboard'
