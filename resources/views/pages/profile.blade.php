@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div x-data="{ pageName: 'Profile', isProfileInfoModal: false, isProfileAddressModal: false }">
+    <div x-data="{ pageName: 'Profile', isProfileInfoModal: false }">
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90" x-text="pageName"></h2>
             <nav>
