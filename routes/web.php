@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +16,25 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return redirect('/signin');
+    return redirect('/dashboard');
 });
 
 // Auth
-Route::get('/signin', function () {
-    return view('pages.auth.signin', [
-        'title' => 'Sign In'
-    ]);
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/signin', [AuthController::class, 'getSignin'])->name('signin');
+    Route::post('/signin', [AuthController::class, 'postSignin']);
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/signout', [AuthController::class, 'signout']);
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard', [
+            'title' => 'Dashboard'
+        ]);
+    });
+});
+
 
 Route::get('/forgot-password', function () {
     return view('pages.auth.forgot-password', [
@@ -31,17 +42,8 @@ Route::get('/forgot-password', function () {
     ]);
 });
 
-Route::get('/signout', function () {
-    return redirect('/signin');
-});
-
-
 // Admin
-Route::get('/dashboard', function () {
-    return view('pages.dashboard', [
-        'title' => 'Dashboard'
-    ]);
-});
+
 
 Route::get('/profile', function () {
     return view('pages.profile', [

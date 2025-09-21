@@ -3,6 +3,7 @@
 @section('content')
 <div class="space-y-6">
     {{-- Breadcrumb --}}
+    @include('components.alerts')
     <div class="flex flex-wrap items-center justify-between gap-3">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90">{{ $title }}</h2>
         <nav>

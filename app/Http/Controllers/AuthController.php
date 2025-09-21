@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
+{
+    public function getSignin() {
+        return view('pages.auth.signin', [
+            'title' => 'Sign In'
+        ]);
+    }
+
+    public function postSignin(Request $request) {
+        if(!$request->email && !$request->password) {
+            return back()->with('error', 'Email dan Password tidak boleh kosong!');
+        }
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if(Auth::guard('web')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect('/dashboard')->with('success', 'Berhasil Sign in!');
+        }
+
+        return back()->with('error', 'Email atau Password salah!');
+    }
+
+    public function signout(Request $request) {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/signin')->with('success', 'Berhasil Sign out!');
+    }
+}
