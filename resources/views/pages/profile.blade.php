@@ -23,15 +23,15 @@
                 <div class="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
                     <div class="flex w-full flex-col items-center gap-6 xl:flex-row">
                         <div class="h-20 w-20 overflow-hidden rounded-full border border-gray-200 dark:border-gray-800">
-                            <img src="{{ asset('images/admin.jpg') }}" alt="user">
+                            <img src="{{ auth()->user()->image }}" alt="user">
                         </div>
                         <div class="order-3 xl:order-2">
                             <h4 class="mb-2 text-center text-lg font-semibold text-gray-800 xl:text-left dark:text-white/90">
-                                Aditya Wicaksono
+                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
                             </h4>
                             <div class="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
                                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                                    Admin Bimbel
+                                    {{ auth()->user()->role == 'admin' ? 'Admin Bimbel' : 'Tutor Bimbel' }}
                                 </p>
                             </div>
                         </div>
@@ -48,21 +48,21 @@
                         <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Nama Depan</p>
-                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">Aditya</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->first_name }}</p>
                             </div>
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Nama Belakang</p>
-                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">Wicaksono</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->last_name }}</p>
                             </div>
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Email</p>
                                 <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3d1c2cdc7ccced6d0c6d1e3d3cacec9cc8dc0ccce">aditya@gmail.com</a>
+                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3d1c2cdc7ccced6d0c6d1e3d3cacec9cc8dc0ccce">{{ auth()->user()->email }}</a>
                                 </p>
                             </div>
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">No. Telepon</p>
-                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">+62 0123456789</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->phone ? auth()->user()->phone : '-' }}</p>
                             </div>
                         </div>
                     </div>
