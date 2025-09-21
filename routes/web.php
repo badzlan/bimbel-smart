@@ -38,7 +38,7 @@ Route::middleware(['auth'])->prefix('/admin')->group(function () {
     });
 
     Route::get('/kelola-kelas', function () {
-        return view('pages.admin.kelola-kelas', [
+        return view('pages.admin.kelola-kelas.index', [
             'title' => 'Kelola Kelas'
         ]);
     });
