@@ -25,7 +25,12 @@ class AuthController extends Controller
 
         if(Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/dashboard')->with('success', 'Berhasil Sign in!');
+
+            if($request->user()->role == 'admin') {
+                return redirect('/admin')->with('success', 'Berhasil Sign in Admin!');
+            } else {
+                return redirect('/tutor')->with('success', 'Berhasil Sign in Tutor!');
+            }
         }
 
         return back()->with('error', 'Email atau Password salah!');

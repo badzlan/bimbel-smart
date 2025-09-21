@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return redirect('/dashboard');
+    return redirect('/signin');
 });
 
 // Auth
@@ -26,13 +26,50 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/signin', [AuthController::class, 'postSignin']);
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/signout', [AuthController::class, 'signout']);
+Route::middleware(['auth'])->prefix('/admin')->group(function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    });
+
     Route::get('/dashboard', function () {
-        return view('pages.dashboard', [
+        return view('pages.admin.dashboard', [
             'title' => 'Dashboard'
         ]);
     });
+
+    Route::get('/kelola-kelas', function () {
+        return view('pages.admin.kelola-kelas', [
+            'title' => 'Kelola Kelas'
+        ]);
+    });
+
+    Route::get('/kelola-tutor', function () {
+        return view('pages.admin.kelola-tutor', [
+            'title' => 'Kelola Tutor'
+        ]);
+    });
+
+    Route::get('/kelola-siswa', function () {
+        return view('pages.admin.kelola-siswa', [
+            'title' => 'Kelola Siswa'
+        ]);
+    });
+
+    Route::get('/rekap-absensi', function () {
+        return view('pages.admin.rekap-absensi', [
+            'title' => 'Rekap Absensi Siswa'
+        ]);
+    });
+
+    Route::get('/total-fee', function () {
+        return view('pages.admin.total-fee', [
+            'title' => 'Total Fee Tutor'
+        ]);
+    });
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/signout', [AuthController::class, 'signout']);
 });
 
 
@@ -41,8 +78,6 @@ Route::get('/forgot-password', function () {
         'title' => 'Forgot Password'
     ]);
 });
-
-// Admin
 
 
 Route::get('/profile', function () {
