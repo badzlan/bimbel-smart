@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    <div x-data="{ pageName: 'Profile', isProfileInfoModal: false }">
+    <div x-data="{ isProfileInfoModal: false }">
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90" x-text="pageName"></h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90">{{ $title }}</h2>
             <nav>
                 <ol class="flex items-center gap-1.5">
                     <li>
@@ -14,7 +14,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="text-sm text-gray-800 dark:text-white/90" x-text="pageName"></li>
+                    <li class="text-sm text-gray-800 dark:text-white/90">{{ $title }}</li>
                 </ol>
             </nav>
         </div>
