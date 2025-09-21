@@ -23,11 +23,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'first_name' => 'Super',
-            'last_name' => 'Admin',
+            'name' => 'Super Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('12345678'),
             'role' => 'admin',
+            'degree' => 'S.Tr.Kom., M.Kom.',
             'image' => '/images/admin.jpg'
         ]);
     }

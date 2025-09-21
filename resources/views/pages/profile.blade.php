@@ -27,7 +27,7 @@
                         </div>
                         <div class="order-3 xl:order-2">
                             <h4 class="mb-2 text-center text-lg font-semibold text-gray-800 xl:text-left dark:text-white/90">
-                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                {{ auth()->user()->name }}, {{ auth()->user()->degree }}
                             </h4>
                             <div class="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
                                 <p class="text-sm text-gray-500 dark:text-gray-400">
@@ -47,12 +47,12 @@
                         </h4>
                         <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
                             <div>
-                                <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Nama Depan</p>
-                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->first_name }}</p>
+                                <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Nama</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->name }}</p>
                             </div>
                             <div>
-                                <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Nama Belakang</p>
-                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->last_name }}</p>
+                                <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Gelar</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ auth()->user()->degree }}</p>
                             </div>
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Email</p>
@@ -97,20 +97,20 @@
                         <div>
                             <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                                 <div class="col-span-2 lg:col-span-1">
-                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Nama Depan</label>
-                                    <input type="text" value="Aditya" class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Nama</label>
+                                    <input type="text" value="{{ auth()->user()->name }}" class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
                                 </div>
                                 <div class="col-span-2 lg:col-span-1">
-                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Nama</label>
-                                    <input type="text" value="Wicaksono" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Gelar</label>
+                                    <input type="text" value="{{ auth()->user()->degree }}" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
                                 </div>
                                 <div class="col-span-2 lg:col-span-1">
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Email</label>
-                                    <input type="text" value="aditya@gmail.com" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                                    <input type="text" value="{{ auth()->user()->email }}" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
                                 </div>
                                 <div class="col-span-2 lg:col-span-1">
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">No. Telepon</label>
-                                    <input type="text" value="+62 0123456789" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                                    <input type="text" value="{{ auth()->user()->phone }}" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
                                 </div>
                             </div>
                         </div>
