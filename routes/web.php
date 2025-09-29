@@ -26,7 +26,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/signin', [AuthController::class, 'postSignin']);
 });
 
-Route::middleware(['auth'])->prefix('/admin')->group(function () {
+Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     });
