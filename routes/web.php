@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,32 +17,25 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return redirect('/signin');
+    return redirect('/sign-in');
 });
 
 // Auth
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/signin', [AuthController::class, 'getSignin'])->name('signin');
-    Route::post('/signin', [AuthController::class, 'postSignin']);
+    Route::get('/sign-in', [AuthController::class, 'getSignin'])->name('signin');
+    Route::post('/sign-in', [AuthController::class, 'postSignin']);
 });
 
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
-        return redirect('/admin/dashboard');
-    });
-
-    Route::get('/dashboard', function () {
         return view('pages.admin.dashboard', [
             'title' => 'Dashboard'
         ]);
     });
 
-    Route::get('/kelola-kelas', function () {
-        return view('pages.admin.kelola-kelas.index', [
-            'title' => 'Kelola Kelas'
-        ]);
-    });
+    Route::resource('/kelola-kelas', ClassController::class);
+
 
     Route::get('/kelola-tutor', function () {
         return view('pages.admin.kelola-tutor', [

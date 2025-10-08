@@ -2,23 +2,9 @@
 
 @section('content')
     <div x-data="{ isProfileInfoModal: false }">
-        <div class="flex flex-wrap items-center justify-between gap-3 pb-6">
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90">{{ $title }}</h2>
-            <nav>
-                <ol class="flex items-center gap-1.5">
-                    <li>
-                        <a class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400" href="{{ url('/') }}">
-                            Admin
-                            <svg class="stroke-current" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="text-sm text-gray-800 dark:text-white/90">{{ $title }}</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+        @include('components.alerts')
+        @include('components.breadcrumb')
+        <div class="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/[0.03] mt-6">
             <div class="mb-6 rounded-2xl border border-gray-200 p-5 lg:p-6 dark:border-gray-800">
                 <div class="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
                     <div class="flex w-full flex-col items-center gap-6 xl:flex-row">
@@ -56,9 +42,7 @@
                             </div>
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Email</p>
-                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3d1c2cdc7ccced6d0c6d1e3d3cacec9cc8dc0ccce">admin@gmail.com</a>
-                                </p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white/90">admin@gmail.com</p>
                             </div>
                             <div>
                                 <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">No. Telepon</p>
@@ -111,6 +95,10 @@
                                 <div class="col-span-2 lg:col-span-1">
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">No. Telepon</label>
                                     <input type="text" value="+62 821 0000 0000" class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800">
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Foto Profil</label>
+                                    <input type="file" class="focus:border-ring-brand-300 shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400">
                                 </div>
                             </div>
                         </div>

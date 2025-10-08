@@ -4,22 +4,7 @@
 <div class="space-y-6">
     {{-- Breadcrumb --}}
     @include('components.alerts')
-    <div class="flex flex-wrap items-center justify-between gap-3">
-        <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90">{{ $title }}</h2>
-        <nav>
-            <ol class="flex items-center gap-1.5">
-                <li>
-                    <a class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400" href="{{ url('/admin') }}">
-                        Admin
-                        <svg class="stroke-current" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                </li>
-                <li class="text-sm text-gray-800 dark:text-white/90">{{ $title }}</li>
-            </ol>
-        </nav>
-    </div>
+    @include('components.breadcrumb')
 
     {{-- Kartu Statistik --}}
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,6 +36,70 @@
                 <p class="flex items-center gap-3 text-gray-500 dark:text-gray-400">Total Siswa</p>
             </div>
         </article>
+    </div>
+
+    {{-- Chart Section --}}
+    <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 xl:col-span-7">
+            <!-- ====== Chart Six Start -->
+            <div class="rounded-2xl border border-gray-200 bg-white px-5 pt-5 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6">
+                <div class="mb-4 flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
+                        Data Absensi per Bulan
+                    </h3>
+                    <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown" :class="openDropDown ? 'text-gray-700 dark:text-white' : 'text-gray-400 hover:text-gray-700 dark:hover:text-white'">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2441 6C10.2441 5.0335 11.0276 4.25 11.9941 4.25H12.0041C12.9706 4.25 13.7541 5.0335 13.7541 6C13.7541 6.9665 12.9706 7.75 12.0041 7.75H11.9941C11.0276 7.75 10.2441 6.9665 10.2441 6ZM10.2441 18C10.2441 17.0335 11.0276 16.25 11.9941 16.25H12.0041C12.9706 16.25 13.7541 17.0335 13.7541 18C13.7541 18.9665 12.9706 19.75 12.0041 19.75H11.9941C11.0276 19.75 10.2441 18.9665 10.2441 18ZM11.9941 10.25C11.0276 10.25 10.2441 11.0335 10.2441 12C10.2441 12.9665 11.0276 13.75 11.9941 13.75H12.0041C12.9706 13.75 13.7541 12.9665 13.7541 12C13.7541 11.0335 12.9706 10.25 12.0041 10.25H11.9941Z" fill=""></path>
+                            </svg>
+                        </button>
+                        <div x-show="openDropDown" @click.outside="openDropDown = false" class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-2xl border border-gray-200 bg-white p-2 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark">
+                            <button class="flex w-full rounded-lg px-3 py-2 text-left text-theme-xs font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                                View More
+                            </button>
+                            <button class="flex w-full rounded-lg px-3 py-2 text-left text-theme-xs font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-scrollbar max-w-full overflow-x-auto">
+                    <div id="chartSix" class="-ml-5 min-w-[700px] pl-2"></div>
+                </div>
+            </div>
+            <!-- ====== Chart Six End -->
+        </div>
+
+        <div class="col-span-12 xl:col-span-5">
+            <!-- ====== Chart Seven Start -->
+            <div class="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+                <div class="flex items-center justify-between mb-9">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
+                        Persentase Absensi Bulan Ini
+                    </h3>
+                    <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown" :class="openDropDown ? 'text-gray-700 dark:text-white' : 'text-gray-400 hover:text-gray-700 dark:hover:text-white'">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2441 6C10.2441 5.0335 11.0276 4.25 11.9941 4.25H12.0041C12.9706 4.25 13.7541 5.0335 13.7541 6C13.7541 6.9665 12.9706 7.75 12.0041 7.75H11.9941C11.0276 7.75 10.2441 6.9665 10.2441 6ZM10.2441 18C10.2441 17.0335 11.0276 16.25 11.9941 16.25H12.0041C12.9706 16.25 13.7541 17.0335 13.7541 18C13.7541 18.9665 12.9706 19.75 12.0041 19.75H11.9941C11.0276 19.75 10.2441 18.9665 10.2441 18ZM11.9941 10.25C11.0276 10.25 10.2441 11.0335 10.2441 12C10.2441 12.9665 11.0276 13.75 11.9941 13.75H12.0041C12.9706 13.75 13.7541 12.9665 13.7541 12C13.7541 11.0335 12.9706 10.25 12.0041 10.25H11.9941Z" fill=""></path>
+                            </svg>
+                        </button>
+                        <div x-show="openDropDown" @click.outside="openDropDown = false" class="absolute right-0 z-40 w-40 p-2 space-y-1 bg-white border border-gray-200 shadow-theme-lg dark:bg-gray-dark top-full rounded-2xl dark:border-gray-800">
+                            <button class="flex w-full px-3 py-2 font-medium text-left text-gray-500 rounded-lg text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                                View More
+                            </button>
+                            <button class="flex w-full px-3 py-2 font-medium text-left text-gray-500 rounded-lg text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    {{-- Chart akan dirender di sini oleh JavaScript --}}
+                    <div id="chartSeven" class="flex justify-center mx-auto chartDarkStyle"></div>
+                </div>
+            </div>
+            <!-- ====== Chart Seven End -->
+        </div>
     </div>
 
     {{-- Tabel Transaksi --}}
@@ -99,7 +148,6 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-                            {{-- Contoh data dinamis, ganti $transactions dengan data dari controller --}}
                             @php
                                 $transactions = [
                                     ['image' => 'images/admin.jpg', 'name' => 'Tutor A', 'fee' => 'Rp 200.000', 'status' => 'sudah-dibayar'],
@@ -153,7 +201,7 @@
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99902 10.245C6.96552 10.245 7.74902 11.0285 7.74902 11.995V12.005C7.74902 12.9715 6.96552 13.755 5.99902 13.755C5.03253 13.755 4.24902 12.9715 4.24902 12.005V11.995C4.24902 11.0285 5.03253 10.245 5.99902 10.245ZM17.999 10.245C18.9655 10.245 19.749 11.0285 19.749 11.995V12.005C19.749 12.9715 18.9655 13.755 17.999 13.755C17.0325 13.755 16.249 12.9715 16.249 12.005V11.995C16.249 11.0285 17.0325 10.245 17.999 10.245ZM13.749 11.995C13.749 11.0285 12.9655 10.245 11.999 10.245C11.0325 10.245 10.249 11.0285 10.249 11.995V12.005C10.249 12.9715 11.0325 13.755 11.999 13.755C12.9655 13.755 13.749 12.9715 13.749 12.005V11.995Z" fill=""></path>
                                                 </svg>
                                             </button>
-                                            <div x-show="open" @click.outside="open = false" class="shadow-theme-lg dark:bg-gray-dark fixed w-40 space-y-1 rounded-2xl border border-gray-200 bg-white p-2 dark:border-gray-800" style="display: none;">
+                                            <div x-show="open" @click.outside="open = false" class="shadow-theme-lg dark:bg-gray-dark absolute right-0 top-full mt-2 w-40 space-y-1 rounded-2xl border border-gray-200 bg-white p-2 dark:border-gray-800" style="display: none;">
                                                 <button class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
                                                     Ubah Status
                                                 </button>
@@ -168,7 +216,6 @@
                 </div>
 
                 <div class="border-t border-gray-200 px-6 py-4 dark:border-gray-800">
-                    {{-- Di sini Anda bisa menggunakan {{ $transactions->links() }} jika menggunakan paginasi Laravel --}}
                     <div class="flex items-center justify-between">
                         <button class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-2 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 sm:px-3.5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
                             <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -229,3 +276,44 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+
+          var options = {
+          series: [{
+          name: 'Alpa',
+          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+        }, {
+          name: 'Hadir',
+          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        }, {
+          name: 'Izin',
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+        }],
+          chart: {
+          type: 'bar',
+        },
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "$ " + val + " thousands"
+            }
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>
+@endpush
+

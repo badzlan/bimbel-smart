@@ -34,7 +34,7 @@
                             <img src="{{ asset('images/grid.svg') }}" alt="grid">
                         </div>
                         <div class="flex max-w-xs flex-col items-center">
-                            <a href="{{ url('/') }}" class="mb-4 flex flex-col items-center">
+                            <a href="/" class="mb-4 flex flex-col items-center">
                                 <img src="{{ asset('images/logo.png') }}" width="175" height="175" class="" alt="Logo">
                                 <h1 class="text-3xl font-bold text-white/90">Bimbel SMART</h1>
                             </a>

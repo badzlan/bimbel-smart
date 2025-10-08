@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function getSignin() {
-        return view('pages.auth.signin', [
+        return view('pages.auth.sign-in', [
             'title' => 'Sign In'
         ]);
     }
