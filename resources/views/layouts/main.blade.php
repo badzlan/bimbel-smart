@@ -40,6 +40,7 @@
         <script defer src="{{ asset('js/s.js') }}"></script>
         <script defer src="{{ asset('js/bundle.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
         @stack('scripts')
     </body>
 </html>

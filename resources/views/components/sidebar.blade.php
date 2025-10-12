@@ -12,7 +12,7 @@
         <nav>
             <div>
                 <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
-                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">MENU</span>
+                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">DASHBOARD</span>
                     <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
                     </svg>
@@ -29,16 +29,24 @@
                             <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Dashboard</span>
                         </a>
                     </li>
+                </ul>
+                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
+                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">MANAJEMEN DATA</span>
+                    <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
+                    </svg>
+                </h3>
+                <ul class="mb-6 flex flex-col gap-1">
                     <li>
-                        <a href="/admin/kelola-kelas" class="menu-item group {{ $title === 'Kelola Kelas' || $title === 'Tambah Kelas' || $title === 'Edit Kelas' ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0 0 0)">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.75 3.25C12.75 2.83579 12.4142 2.5 12 2.5C11.5858 2.5 11.25 2.83579 11.25 3.25V4.5H4.75C3.50736 4.5 2.5 5.50736 2.5 6.75V15C2.5 16.2426 3.50736 17.25 4.75 17.25H7.90742L6.79074 20.507C6.6564 20.8988 6.86514 21.3253 7.25696 21.4597C7.64878 21.594 8.07532 21.3853 8.20966 20.9934L9.49313 17.25H11.25V21.25C11.25 21.6642 11.5858 22 12 22C12.4142 22 12.75 21.6642 12.75 21.25V17.25H14.5073L15.7907 20.9934C15.9251 21.3853 16.3516 21.594 16.7434 21.4597C17.1353 21.3253 17.344 20.8988 17.2097 20.507L16.093 17.25H19.25C20.4926 17.25 21.5 16.2426 21.5 15V6.75C21.5 5.50736 20.4926 4.5 19.25 4.5H12.75V3.25ZM19.25 15.75C19.6642 15.75 20 15.4142 20 15V6.75C20 6.33579 19.6642 6 19.25 6H4.75C4.33579 6 4 6.33579 4 6.75V15C4 15.4142 4.33579 15.75 4.75 15.75H19.25Z" fill="#343C54"/>
+                        <a href="/admin/siswa" class="menu-item group {{ $title === 'Kelola Siswa' || $title === 'Tambah Siswa' || $title === 'Edit Siswa' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.75 2C5.50736 2 4.5 3.00736 4.5 4.25V6.25H3.25C2.83579 6.25 2.5 6.58579 2.5 7C2.5 7.41421 2.83579 7.75 3.25 7.75H4.5V11.25H3.25C2.83579 11.25 2.5 11.5858 2.5 12C2.5 12.4142 2.83579 12.75 3.25 12.75H4.5V16.25H3.25C2.83579 16.25 2.5 16.5858 2.5 17C2.5 17.4142 2.83579 17.75 3.25 17.75H4.5V19.75C4.5 20.9926 5.50736 22 6.75 22H17.25C18.4926 22 19.5 20.9926 19.5 19.75V4.25C19.5 3.00736 18.4926 2 17.25 2H6.75ZM6 17.75V19.75C6 20.1642 6.33579 20.5 6.75 20.5H17.25C17.6642 20.5 18 20.1642 18 19.75V4.25C18 3.83579 17.6642 3.5 17.25 3.5H6.75C6.33579 3.5 6 3.83579 6 4.25V6.25H7.25C7.66421 6.25 8 6.58579 8 7C8 7.41421 7.66421 7.75 7.25 7.75H6V11.25H7.25C7.66421 11.25 8 11.5858 8 12C8 12.4142 7.66421 12.75 7.25 12.75H6V16.25H7.25C7.66421 16.25 8 16.5858 8 17C8 17.4142 7.66421 17.75 7.25 17.75H6Z" fill="#323544"/>
                             </svg>
-                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Kelola Kelas</span>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Kelola Siswa</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/kelola-tutor" class="menu-item group {{ $title === 'Kelola Tutor' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                        <a href="/admin/tutor" class="menu-item group {{ $title === 'Kelola Tutor' ? 'menu-item-active' : 'menu-item-inactive' }}">
                             <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0 0 0)">
                                 <path d="M15.3289 11.4955C14.4941 11.4955 13.724 11.2188 13.1051 10.7522C13.3972 10.3301 13.6284 9.86262 13.786 9.36254C14.1827 9.7539 14.7276 9.99545 15.3289 9.99545C16.5422 9.99545 17.5258 9.01185 17.5258 7.79851C17.5258 6.58517 16.5422 5.60156 15.3289 5.60156C14.7276 5.60156 14.1827 5.84312 13.786 6.23449C13.6284 5.73441 13.3972 5.26698 13.1051 4.84488C13.7239 4.37824 14.4941 4.10156 15.3289 4.10156C17.3706 4.10156 19.0258 5.75674 19.0258 7.79851C19.0258 9.84027 17.3706 11.4955 15.3289 11.4955Z" fill="#343C54"/>
                                 <path d="M14.7723 13.1891C15.0227 13.437 15.2464 13.6945 15.4463 13.9566C16.7954 13.9826 17.7641 14.3143 18.4675 14.7651C19.2032 15.2366 19.6941 15.8677 20.0242 16.5168C20.3563 17.1698 20.5204 17.8318 20.6002 18.337C20.6398 18.5878 20.6579 18.795 20.6661 18.9365C20.6702 19.0071 20.6717 19.061 20.6724 19.0952L20.6726 19.1161L20.6727 19.1313L20.6727 19.1363L21.4197 19.1486C20.6793 19.1358 20.6728 19.136 20.6727 19.1363L20.6727 19.1376C20.6666 19.5509 20.9961 19.8914 21.4096 19.8985C21.8237 19.9057 22.1653 19.5758 22.1725 19.1617L21.4284 19.1488C22.1725 19.1617 22.1725 19.1621 22.1725 19.1617L22.1725 19.1599L22.1726 19.1575L22.1726 19.1511L22.1727 19.1319C22.1727 19.1163 22.1726 19.0951 22.1721 19.0686C22.1712 19.0158 22.1689 18.9419 22.1636 18.85C22.153 18.6665 22.1303 18.4094 22.0819 18.1029C21.9856 17.4936 21.7848 16.6697 21.3612 15.8368C20.9357 15 20.2801 14.1451 19.2768 13.5022C18.2708 12.8574 16.9604 12.4549 15.274 12.4549C14.8284 12.4549 14.4092 12.483 14.0148 12.5362C14.2852 12.7384 14.5376 12.9566 14.7723 13.1891Z" fill="#343C54"/>
@@ -49,20 +57,57 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/kelola-siswa" class="menu-item group {{ $title === 'Kelola Siswa' ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.75 2C5.50736 2 4.5 3.00736 4.5 4.25V6.25H3.25C2.83579 6.25 2.5 6.58579 2.5 7C2.5 7.41421 2.83579 7.75 3.25 7.75H4.5V11.25H3.25C2.83579 11.25 2.5 11.5858 2.5 12C2.5 12.4142 2.83579 12.75 3.25 12.75H4.5V16.25H3.25C2.83579 16.25 2.5 16.5858 2.5 17C2.5 17.4142 2.83579 17.75 3.25 17.75H4.5V19.75C4.5 20.9926 5.50736 22 6.75 22H17.25C18.4926 22 19.5 20.9926 19.5 19.75V4.25C19.5 3.00736 18.4926 2 17.25 2H6.75ZM6 17.75V19.75C6 20.1642 6.33579 20.5 6.75 20.5H17.25C17.6642 20.5 18 20.1642 18 19.75V4.25C18 3.83579 17.6642 3.5 17.25 3.5H6.75C6.33579 3.5 6 3.83579 6 4.25V6.25H7.25C7.66421 6.25 8 6.58579 8 7C8 7.41421 7.66421 7.75 7.25 7.75H6V11.25H7.25C7.66421 11.25 8 11.5858 8 12C8 12.4142 7.66421 12.75 7.25 12.75H6V16.25H7.25C7.66421 16.25 8 16.5858 8 17C8 17.4142 7.66421 17.75 7.25 17.75H6Z" fill="#323544"/>
+                        <a href="/admin/kelas" class="menu-item group {{ $title === 'Kelola Kelas' || $title === 'Tambah Kelas' || $title === 'Edit Kelas' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0 0 0)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.75 3.25C12.75 2.83579 12.4142 2.5 12 2.5C11.5858 2.5 11.25 2.83579 11.25 3.25V4.5H4.75C3.50736 4.5 2.5 5.50736 2.5 6.75V15C2.5 16.2426 3.50736 17.25 4.75 17.25H7.90742L6.79074 20.507C6.6564 20.8988 6.86514 21.3253 7.25696 21.4597C7.64878 21.594 8.07532 21.3853 8.20966 20.9934L9.49313 17.25H11.25V21.25C11.25 21.6642 11.5858 22 12 22C12.4142 22 12.75 21.6642 12.75 21.25V17.25H14.5073L15.7907 20.9934C15.9251 21.3853 16.3516 21.594 16.7434 21.4597C17.1353 21.3253 17.344 20.8988 17.2097 20.507L16.093 17.25H19.25C20.4926 17.25 21.5 16.2426 21.5 15V6.75C21.5 5.50736 20.4926 4.5 19.25 4.5H12.75V3.25ZM19.25 15.75C19.6642 15.75 20 15.4142 20 15V6.75C20 6.33579 19.6642 6 19.25 6H4.75C4.33579 6 4 6.33579 4 6.75V15C4 15.4142 4.33579 15.75 4.75 15.75H19.25Z" fill="#343C54"/>
                             </svg>
-                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Kelola Siswa</span>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Kelola Kelas</span>
                         </a>
                     </li>
+                </ul>
+                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
+                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">REKAP ABSENSI</span>
+                    <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
+                    </svg>
+                </h3>
+                <ul class="mb-6 flex flex-col gap-1">
                     <li>
-                        <a href="/admin/rekap-absensi" class="menu-item group {{ $title === 'Rekap Absensi' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                        <a href="/admin/pertemuan" class="menu-item group {{ $title === 'Rekap Per Pertemuan' ? 'menu-item-active' : 'menu-item-inactive' }}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20.75 18.5V8.67794L19.25 10.1779V18.5C19.25 18.9142 18.9142 19.25 18.5 19.25H5.5C5.08579 19.25 4.75 18.9142 4.75 18.5V5.5C4.75 5.08579 5.08579 4.75 5.5 4.75H18.314L19.2936 3.77034C19.3842 3.67974 19.4806 3.59848 19.5816 3.52657C19.2607 3.35027 18.8921 3.25 18.5 3.25H5.5C4.25736 3.25 3.25 4.25736 3.25 5.5V18.5C3.25 19.7426 4.25736 20.75 5.5 20.75H18.5C19.7426 20.75 20.75 19.7426 20.75 18.5Z" fill="#323544"/>
                                 <path d="M20.4838 6.51868C20.7767 6.22578 20.7767 5.75091 20.4838 5.45802C20.1909 5.16512 19.7161 5.16512 19.4232 5.45802L11.9298 12.9514L8.57686 9.59849C8.28396 9.3056 7.80909 9.3056 7.5162 9.5985C7.22331 9.89139 7.22331 10.3663 7.5162 10.6592L11.3995 14.5424C11.6924 14.8353 12.1672 14.8353 12.4601 14.5424L20.4838 6.51868Z" fill="#323544"/>
                             </svg>
-                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Rekap Absensi</span>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Rekap Per Pertemuan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/bulan" class="menu-item group {{ $title === 'Rekap Per Bulan' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.41421 2 8.75 2.33579 8.75 2.75V3.75H15.25V2.75C15.25 2.33579 15.5858 2 16 2C16.4142 2 16.75 2.33579 16.75 2.75V3.75H18.5C19.7426 3.75 20.75 4.75736 20.75 6V9V19C20.75 20.2426 19.7426 21.25 18.5 21.25H5.5C4.25736 21.25 3.25 20.2426 3.25 19V9V6C3.25 4.75736 4.25736 3.75 5.5 3.75H7.25V2.75C7.25 2.33579 7.58579 2 8 2ZM8 5.25H5.5C5.08579 5.25 4.75 5.58579 4.75 6V8.25H19.25V6C19.25 5.58579 18.9142 5.25 18.5 5.25H16H8ZM19.25 9.75H4.75V19C4.75 19.4142 5.08579 19.75 5.5 19.75H18.5C18.9142 19.75 19.25 19.4142 19.25 19V9.75Z" fill="currentColor"></path>
+                            </svg>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Rekap Per Bulan</span>
+                        </a>
+                    </li>
+                </ul>
+                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
+                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">JADWAL & PEMBAYARAN</span>
+                    <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
+                    </svg>
+                </h3>
+                <ul class="mb-6 flex flex-col gap-1">
+                    <li>
+                        <a href="/admin/sesi" class="menu-item group {{ $title === 'Sesi Pertemuan' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.32031 4.75C3.62996 4.75 3.07031 5.30964 3.07031 6C3.07031 6.69036 3.62996 7.25 4.32031 7.25H4.33031C5.02067 7.25 5.58031 6.69036 5.58031 6C5.58031 5.30964 5.02067 4.75 4.33031 4.75H4.32031Z" fill="#323544"/>
+                                <path d="M8.31055 5.25C7.89633 5.25 7.56055 5.58579 7.56055 6C7.56055 6.41421 7.89633 6.75 8.31055 6.75L20.3105 6.75C20.7248 6.75 21.0605 6.41421 21.0605 6C21.0605 5.58579 20.7248 5.25 20.3105 5.25H8.31055Z" fill="#323544"/>
+                                <path d="M8.31055 17.25C7.89633 17.25 7.56055 17.5858 7.56055 18C7.56055 18.4142 7.89633 18.75 8.31055 18.75L20.3105 18.75C20.7248 18.75 21.0605 18.4142 21.0605 18C21.0605 17.5858 20.7248 17.25 20.3105 17.25L8.31055 17.25Z" fill="#323544"/>
+                                <path d="M7.56055 12C7.56055 11.5858 7.89633 11.25 8.31055 11.25L20.3105 11.25C20.7248 11.25 21.0605 11.5858 21.0605 12C21.0605 12.4142 20.7248 12.75 20.3105 12.75L8.31055 12.75C7.89633 12.75 7.56055 12.4142 7.56055 12Z" fill="#323544"/>
+                                <path d="M3.07031 12C3.07031 11.3096 3.62996 10.75 4.32031 10.75H4.33031C5.02067 10.75 5.58031 11.3096 5.58031 12C5.58031 12.6904 5.02067 13.25 4.33031 13.25H4.32031C3.62996 13.25 3.07031 12.6904 3.07031 12Z" fill="#323544"/>
+                                <path d="M4.32031 16.75C3.62996 16.75 3.07031 17.3096 3.07031 18C3.07031 18.6904 3.62996 19.25 4.32031 19.25H4.33031C5.02067 19.25 5.58031 18.6904 5.58031 18C5.58031 17.3096 5.02067 16.75 4.33031 16.75H4.32031Z" fill="#323544"/>
+                            </svg>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Sesi Pertemuan</span>
                         </a>
                     </li>
                     <li>
@@ -75,7 +120,7 @@
                     </li>
                 </ul>
                 <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
-                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">OTHER</span>
+                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">LAINNYA</span>
                     <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
                     </svg>
@@ -97,12 +142,8 @@
                             <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Sign Out</span>
                         </a>
                     </li>
+                </ul>
             </div>
         </nav>
-        {{-- <div :class="sidebarToggle ? 'xl:hidden' : ''" class="mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]">
-            <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">#1 Tailwind CSS Dashboard</h3>
-            <p class="text-theme-sm mb-4 text-gray-500 dark:text-gray-400">Leading Tailwind CSS Admin Template with 400+ UI Component and Pages.</p>
-            <a href="https://tailadmin.com/pricing" target="_blank" rel="nofollow" class="bg-brand-500 text-theme-sm hover:bg-brand-600 flex items-center justify-center rounded-lg p-3 font-medium text-white">Purchase Plan</a>
-        </div> --}}
     </div>
 </aside>

@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ClassController extends Controller
+class SesiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.admin.kelas.index', [
-            'title' => 'Kelola Kelas'
+        return view('pages.admin.sesi', [
+            'title' => 'Sesi Pertemuan'
         ]);
     }
 
@@ -21,9 +21,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.kelas.create', [
-            'title' => 'Tambah Kelas'
-        ]);
+        //
     }
 
     /**
@@ -47,9 +45,7 @@ class ClassController extends Controller
      */
     public function edit(string $id)
     {
-        return view('pages.admin.kelas.edit', [
-            'title' => 'Edit Kelas'
-        ]);
+        //
     }
 
     /**

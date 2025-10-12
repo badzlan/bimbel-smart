@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\SesiController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TutorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,20 +37,36 @@ Route::prefix('/admin')->group(function () {
         ]);
     });
 
-    Route::resource('/kelola-kelas', ClassController::class);
+    Route::resource('/kelas', ClassController::class);
+    Route::resource('/tutor', TutorController::class);
+    Route::resource('/siswa', SiswaController::class);
 
-
-    Route::get('/kelola-tutor', function () {
-        return view('pages.admin.kelola-tutor', [
-            'title' => 'Kelola Tutor'
+    Route::get('/pertemuan', function () {
+        return view('pages.admin.absensi.pertemuan', [
+            'title' => 'Rekap Per Pertemuan'
         ]);
     });
 
-    Route::get('/kelola-siswa', function () {
-        return view('pages.admin.kelola-siswa', [
-            'title' => 'Kelola Siswa'
+    Route::get('/bulan', function () {
+        return view('pages.admin.absensi.bulan', [
+            'title' => 'Rekap Per Bulan'
         ]);
     });
+
+    Route::resource('/sesi', SesiController::class);
+
+
+    // Route::get('/tutor', function () {
+    //     return view('pages.admin.kelola-tutor', [
+    //         'title' => 'Kelola Tutor'
+    //     ]);
+    // });
+
+    // Route::get('/siswa', function () {
+    //     return view('pages.admin.kelola-siswa', [
+    //         'title' => 'Kelola Siswa'
+    //     ]);
+    // });
 
     Route::get('/rekap-absensi', function () {
         return view('pages.admin.rekap-absensi', [

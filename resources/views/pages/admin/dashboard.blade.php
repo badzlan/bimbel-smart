@@ -130,6 +130,8 @@
                     <table class="min-w-full">
                         <thead class="border-y border-gray-100 py-3 dark:border-gray-800">
                             <tr>
+                                <th class="w-14 px-5 py-4 text-left">
+                                </th>
                                 <th class="py-3 pr-5 font-normal whitespace-nowrap sm:pr-6">
                                     <div class="flex items-center">
                                         <p class="text-theme-sm text-gray-500 dark:text-gray-400">Nama Tutor</p>
@@ -143,6 +145,11 @@
                                 <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
                                     <div class="flex items-center">
                                         <p class="text-theme-sm text-gray-500 dark:text-gray-400">Status Pembayaran</p>
+                                    </div>
+                                </th>
+                                <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
+                                    <div class="flex items-center">
+                                        <p class="text-theme-sm text-gray-500 dark:text-gray-400">Aksi</p>
                                     </div>
                                 </th>
                             </tr>
@@ -159,6 +166,8 @@
 
                             @foreach ($transactions as $transaction)
                             <tr>
+                                <td class="w-14 px-5 py-4 whitespace-nowrap">
+                                </td>
                                 <td class="py-3 pr-5 whitespace-nowrap sm:pr-6">
                                     <div class="col-span-3 flex items-center">
                                         <div class="flex items-center gap-3">
@@ -194,7 +203,7 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center justify-center">
+                                    <div class="flex items-center justify-start">
                                         <div x-data="{ open: false }" class="relative">
                                             <button @click="open = !open" class="text-gray-500 dark:text-gray-400">
                                                 <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

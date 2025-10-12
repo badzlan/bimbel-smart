@@ -40,6 +40,6 @@ class AuthController extends Controller
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/signin')->with('success', 'Berhasil Sign out!');
+        return redirect('/sign-in')->with('success', 'Berhasil Sign out!');
     }
 }
