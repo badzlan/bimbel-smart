@@ -55,25 +55,6 @@ Route::prefix('/admin')->group(function () {
 
     Route::resource('/sesi', SesiController::class);
 
-
-    // Route::get('/tutor', function () {
-    //     return view('pages.admin.kelola-tutor', [
-    //         'title' => 'Kelola Tutor'
-    //     ]);
-    // });
-
-    // Route::get('/siswa', function () {
-    //     return view('pages.admin.kelola-siswa', [
-    //         'title' => 'Kelola Siswa'
-    //     ]);
-    // });
-
-    Route::get('/rekap-absensi', function () {
-        return view('pages.admin.rekap-absensi', [
-            'title' => 'Rekap Absensi Siswa'
-        ]);
-    });
-
     Route::get('/total-fee', function () {
         return view('pages.admin.total-fee', [
             'title' => 'Total Fee Tutor'
@@ -83,13 +64,6 @@ Route::prefix('/admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signout']);
-});
-
-
-Route::get('/forgot-password', function () {
-    return view('pages.auth.forgot-password', [
-        'title' => 'Forgot Password'
-    ]);
 });
 
 

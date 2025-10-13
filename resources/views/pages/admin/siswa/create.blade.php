@@ -50,6 +50,7 @@
                                             <option value="Kelas 6C"
                                                 class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
                                                 Kelas 6C
+                                            </option>
                                         </select>
                                         <span
                                             class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-700 dark:text-gray-400">
@@ -241,7 +242,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                <a href="/admin/kelas"
+                <a href="/admin/siswa"
                     class="shadow-theme-xs inline-flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-gray-700 ring-1 ring-gray-300 transition hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03]">
                     Batal
                 </a>
