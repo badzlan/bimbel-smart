@@ -47,6 +47,12 @@ Route::prefix('/admin')->group(function () {
         ]);
     });
 
+    Route::get('/pertemuan/detail', function () {
+        return view('pages.admin.absensi.pertemuan-detail', [
+            'title' => 'Rekap Pertemuan Detail'
+        ]);
+    });
+
     Route::get('/bulan', function () {
         return view('pages.admin.absensi.bulan', [
             'title' => 'Rekap Per Bulan'
