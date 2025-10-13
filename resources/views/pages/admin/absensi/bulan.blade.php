@@ -179,7 +179,7 @@ $siswa = [
                         <td class="w-14 px-5 py-4 whitespace-nowrap">
                         </td>
                         {{-- Create a dropdown for each meeting --}}
-                        @for ($i = 1; $i <= 7; $i++)
+                        @for ($i = 1; $i <= 12; $i++)
                             @php
                                 // Make 'H' more likely to be chosen
                                 $statuses = ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'S', 'I', 'A'];
