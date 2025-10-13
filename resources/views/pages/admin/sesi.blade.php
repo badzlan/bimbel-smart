@@ -28,27 +28,51 @@
                 <div class="modal-header">
                     <h5 class="mb-2 font-semibold text-gray-800 modal-title text-theme-xl lg:text-2xl dark:text-white/90"
                         id="eventModalLabel">
-                        Add / Edit Event
+                        Tambah Sesi Pertemuan
                     </h5>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Plan your next big moment: schedule or edit an event to stay on track
-                    </p>
                 </div>
                 <div class="mt-8 modal-body">
                     <div>
                         <div>
                             <div>
                                 <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                    Event Title
+                                    Kelas
                                 </label>
-                                <input id="event-title" type="text"
-                                    class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30" />
+                                <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent">
+                                    <select
+                                        class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
+                                        :class="isOptionSelected & amp; & amp;
+                                        'text-gray-800 dark:text-white/90'"
+                                        @change="isOptionSelected = true">
+                                        <option value="" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                            Pilih Kelas
+                                        </option>
+                                        <option value="Kelas 9A" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                            Kelas 9A
+                                        </option>
+                                        <option value="Kelas 8B" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                            Kelas 8B
+                                        </option>
+                                        <option value="Kelas 6C" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                            Kelas 6C
+                                        </option>
+                                    </select>
+                                    <span
+                                        class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-700 dark:text-gray-400">
+                                        <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.79175 7.396L10.0001 12.6043L15.2084 7.396" stroke=""
+                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-6">
                             <div>
                                 <label class="block mb-4 text-sm font-medium text-gray-700 dark:text-gray-400">
-                                    Event Color
+                                    Pilih Warna Sesi
                                 </label>
                             </div>
                             <div class="flex flex-wrap items-center gap-4 sm:gap-5">
@@ -66,7 +90,7 @@
                                                     </span>
                                                 </span>
                                             </span>
-                                            Danger
+                                            Merah
                                         </label>
                                     </div>
                                 </div>
@@ -84,7 +108,7 @@
                                                     </span>
                                                 </span>
                                             </span>
-                                            Success
+                                            Hijau
                                         </label>
                                     </div>
                                 </div>
@@ -102,7 +126,7 @@
                                                     </span>
                                                 </span>
                                             </span>
-                                            Primary
+                                            Biru
                                         </label>
                                     </div>
                                 </div>
@@ -120,7 +144,7 @@
                                                     </span>
                                                 </span>
                                             </span>
-                                            Warning
+                                            Kuning
                                         </label>
                                     </div>
                                 </div>
@@ -130,32 +154,12 @@
                         <div class="mt-6">
                             <div>
                                 <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                    Enter Start Date
+                                    Pilih tanggal sesi
                                 </label>
                                 <div class="relative">
                                     <input id="event-start-date" type="date"
                                         class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 pl-4 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                                         onclick="this.showPicker()" />
-                                    <span class="absolute top-1/2 right-3.5 -translate-y-1/2">
-                                        <svg class="fill-gray-700 dark:fill-gray-400" width="14" height="14"
-                                            viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M4.33317 0.0830078C4.74738 0.0830078 5.08317 0.418794 5.08317 0.833008V1.24967H8.9165V0.833008C8.9165 0.418794 9.25229 0.0830078 9.6665 0.0830078C10.0807 0.0830078 10.4165 0.418794 10.4165 0.833008V1.24967L11.3332 1.24967C12.2997 1.24967 13.0832 2.03318 13.0832 2.99967V4.99967V11.6663C13.0832 12.6328 12.2997 13.4163 11.3332 13.4163H2.6665C1.70001 13.4163 0.916504 12.6328 0.916504 11.6663V4.99967V2.99967C0.916504 2.03318 1.70001 1.24967 2.6665 1.24967L3.58317 1.24967V0.833008C3.58317 0.418794 3.91896 0.0830078 4.33317 0.0830078ZM4.33317 2.74967H2.6665C2.52843 2.74967 2.4165 2.8616 2.4165 2.99967V4.24967H11.5832V2.99967C11.5832 2.8616 11.4712 2.74967 11.3332 2.74967H9.6665H4.33317ZM11.5832 5.74967H2.4165V11.6663C2.4165 11.8044 2.52843 11.9163 2.6665 11.9163H11.3332C11.4712 11.9163 11.5832 11.8044 11.5832 11.6663V5.74967Z"
-                                                fill="" />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-6">
-                            <div>
-                                <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                    Enter End Date
-                                </label>
-                                <div class="relative">
-                                    <input id="event-end-date" type="date"
-                                        class="dark:bg-dark-900 datepickerTwo shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 pl-4 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30" />
                                     <span class="absolute top-1/2 right-3.5 -translate-y-1/2">
                                         <svg class="fill-gray-700 dark:fill-gray-400" width="14" height="14"
                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

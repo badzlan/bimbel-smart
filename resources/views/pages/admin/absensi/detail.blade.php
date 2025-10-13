@@ -164,7 +164,7 @@
                         <th class="bg-warning-50 p-4 text-center text-xs font-medium text-warning-700 whitespace-nowrap dark:bg-warning-500/10 dark:text-warning-400">
                             Sakit
                         </th>
-                        <th class="bg-blue-light-50 p-4 text-center text-xs font-medium text-blue-light-700 whitespace-nowrap dark:bg-blue-500/10 dark:text-blue-400">
+                        <th class="bg-blue-light-50 p-4 text-center text-xs font-medium text-primary-700 whitespace-nowrap dark:bg-blue-500/10 dark:text-blue-400">
                             Izin
                         </th>
                         <th class="bg-red-50 p-4 text-center text-xs font-medium text-red-700 whitespace-nowrap dark:bg-red-500/10 dark:text-red-400">

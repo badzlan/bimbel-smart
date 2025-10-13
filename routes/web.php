@@ -48,7 +48,7 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::get('/pertemuan/detail', function () {
-        return view('pages.admin.absensi.pertemuan-detail', [
+        return view('pages.admin.absensi.detail', [
             'title' => 'Rekap Pertemuan Detail'
         ]);
     });
@@ -61,8 +61,8 @@ Route::prefix('/admin')->group(function () {
 
     Route::resource('/sesi', SesiController::class);
 
-    Route::get('/total-fee', function () {
-        return view('pages.admin.total-fee', [
+    Route::get('/fee', function () {
+        return view('pages.admin.fee', [
             'title' => 'Total Fee Tutor'
         ]);
     });
