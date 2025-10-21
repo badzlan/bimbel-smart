@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClassController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TutorController;
@@ -37,9 +37,9 @@ Route::prefix('/admin')->group(function () {
         ]);
     });
 
-    Route::resource('/kelas', ClassController::class);
-    Route::resource('/tutor', TutorController::class);
     Route::resource('/siswa', SiswaController::class);
+    Route::resource('/tutor', TutorController::class);
+    Route::resource('/kelas', KelasController::class);
 
     Route::get('/pertemuan', function () {
         return view('pages.admin.absensi.pertemuan', [
