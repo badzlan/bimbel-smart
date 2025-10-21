@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TutorController;
@@ -69,12 +70,8 @@ Route::prefix('/admin')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'getProfile']);
+    Route::put('/profile', [ProfileController::class, 'putProfile']);
+
     Route::get('/signout', [AuthController::class, 'signout']);
-});
-
-
-Route::get('/profile', function () {
-    return view('pages.profile', [
-        'title' => 'Profile'
-    ]);
 });

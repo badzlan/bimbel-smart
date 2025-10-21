@@ -38,8 +38,10 @@ class AuthController extends Controller
 
     public function signout(Request $request) {
         Auth::guard('web')->logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/sign-in')->with('success', 'Berhasil Sign out!');
     }
 }

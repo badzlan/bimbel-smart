@@ -40,9 +40,9 @@
                                 </div>
                             </div>
                             <div>
-                                <a href="/admin" type="submit" class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+                                <button type="submit" class="bg-brand-500 shadow-theme-xs hover:bg-brand-600 flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-medium text-white transition">
                                     Sign In
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
