@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -19,7 +20,8 @@ class ProfileController extends Controller
         }
 
         if($request->hasFile('image')) {
-            $filename = time() . '-' . auth()->user()->id . '.' . $request->image->getClientOriginalExtension();
+            File::delete(public_path(auth()->user()->image));
+            $filename = 'profile-' . auth()->user()->id . '.' . $request->image->getClientOriginalExtension();
             $request->image->move(public_path('images/profile'), $filename);
 
             User::where('id', auth()->user()->id)->update([
