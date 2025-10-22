@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TutorController extends Controller
@@ -31,7 +32,20 @@ class TutorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!$request->name || !$request->degree || !$request->email || !$request->phone || !$request->password) {
+            return back()->with('error', 'Data tutor tidak boleh kosong!');
+        }
+
+        User::create([
+            'name' => $request->name,
+            'degree' => $request->degree,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password),
+            'role' => 'tutor',
+        ]);
+
+        return redirect('/admin/tutor')->with('success', 'Berhasil menambahkan tutor!');
     }
 
     /**
