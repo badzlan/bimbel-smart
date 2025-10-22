@@ -1,59 +1,7 @@
 @extends('layouts.main')
 
-@php
-    // Data diubah menjadi data tutor
-    $tutor = [
-        [
-            'id' => 1,
-            'foto' => '/images/admin.jpg',
-            'nama' => 'Badzlan Nur',
-            'gelar' => 'S.Tr.Kom., M.Kom.',
-            'kelas' => 'Kelas 9A',
-            'email' => 'badzlan@gmail.com',
-            'no_telepon' => '081234567890',
-        ],
-        [
-            'id' => 2,
-            'foto' => '/images/admin.jpg',
-            'nama' => 'Andi Wijaya',
-            'gelar' => 'S.Pd., M.Pd.',
-            'kelas' => 'Kelas 11 IPA 2',
-            'email' => 'andi.wijaya@example.com',
-            'no_telepon' => '081298765432',
-        ],
-        [
-            'id' => 3,
-            'foto' => '/images/admin.jpg',
-            'nama' => 'Rina Hartono',
-            'gelar' => 'S.Si.',
-            'kelas' => 'Kelas 6B',
-            'email' => 'rina.h@example.com',
-            'no_telepon' => '081312345678',
-        ],
-        [
-            'id' => 4,
-            'foto' => '/images/admin.jpg',
-            'nama' => 'Siti Aminah',
-            'gelar' => 'S.Hum., M.A.',
-            'kelas' => 'Kelas 8C',
-            'email' => 'siti.aminah@example.com',
-            'no_telepon' => '081555554444',
-        ],
-        [
-            'id' => 5,
-            'foto' => '/images/admin.jpg',
-            'nama' => 'Guntur Perkasa',
-            'gelar' => 'Dr., S.T., M.T.',
-            'kelas' => 'Kelas 12 IPS 1',
-            'email' => 'guntur.p@example.com',
-            'no_telepon' => '081808080808',
-        ],
-    ];
-@endphp
-
 @section('content')
     <div class="space-y-6">
-        {{-- Breadcrumb --}}
         @include('components.alerts')
         @include('components.breadcrumb')
 
@@ -182,23 +130,29 @@
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
-                                        <img src="{{ asset($item['foto']) }}" class="h-10 w-10 rounded-full object-cover"
-                                            alt="{{ $item['nama'] }}">
+                                        <img src="{{ asset($item->image) }}" class="h-10 w-10 rounded-full object-cover"
+                                            alt="{{ $item->name }}">
                                         <span
-                                            class="text-sm font-medium text-gray-700 dark:text-gray-400">{{ $item['nama'] }}</span>
+                                            class="text-sm font-medium text-gray-700 dark:text-gray-400">{{ $item->name }}</span>
                                     </div>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item['gelar'] }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->degree }}</p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item['kelas'] }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                                        @if ($item->kelas)
+                                            {{ $item->kelas->nama_kelas }}
+                                        @else
+                                            Belum punya kelas
+                                        @endif
+                                    </p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item['email'] }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->email }}</p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item['no_telepon'] }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->phone }}</p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <div x-data="{ open: false }" class="relative flex justify-start">
@@ -221,15 +175,19 @@
                                                 </svg>
                                                 Edit Tutor
                                             </a>
-                                            <a href="/admin/tutor/{{ $item['id'] }}"
-                                                class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-600 dark:hover:bg-gray-500/10 dark:hover:text-gray-400">
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M14.7223 12.7585C14.7426 12.3448 14.4237 11.9929 14.01 11.9726C13.5963 11.9522 13.2444 12.2711 13.2241 12.6848L12.9999 17.2415C12.9796 17.6552 13.2985 18.0071 13.7122 18.0274C14.1259 18.0478 14.4778 17.7289 14.4981 17.3152L14.7223 12.7585Z" fill="#323544"/>
-                                                    <path d="M9.98802 11.9726C9.5743 11.9929 9.25542 12.3448 9.27577 12.7585L9.49993 17.3152C9.52028 17.7289 9.87216 18.0478 10.2859 18.0274C10.6996 18.0071 11.0185 17.6552 10.9981 17.2415L10.774 12.6848C10.7536 12.2711 10.4017 11.9522 9.98802 11.9726Z" fill="#323544"/>
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.249 2C9.00638 2 7.99902 3.00736 7.99902 4.25V5H5.5C4.25736 5 3.25 6.00736 3.25 7.25C3.25 8.28958 3.95503 9.16449 4.91303 9.42267L5.54076 19.8848C5.61205 21.0729 6.59642 22 7.78672 22H16.2113C17.4016 22 18.386 21.0729 18.4573 19.8848L19.085 9.42267C20.043 9.16449 20.748 8.28958 20.748 7.25C20.748 6.00736 19.7407 5 18.498 5H15.999V4.25C15.999 3.00736 14.9917 2 13.749 2H10.249ZM14.499 5V4.25C14.499 3.83579 14.1632 3.5 13.749 3.5H10.249C9.83481 3.5 9.49902 3.83579 9.49902 4.25V5H14.499ZM5.5 6.5C5.08579 6.5 4.75 6.83579 4.75 7.25C4.75 7.66421 5.08579 8 5.5 8H18.498C18.9123 8 19.248 7.66421 19.248 7.25C19.248 6.83579 18.9123 6.5 18.498 6.5H5.5ZM6.42037 9.5H17.5777L16.96 19.7949C16.9362 20.191 16.6081 20.5 16.2113 20.5H7.78672C7.38995 20.5 7.06183 20.191 7.03807 19.7949L6.42037 9.5Z" fill="#323544"/>
-                                                </svg>
-                                                Hapus Tutor
-                                            </a>
+                                            <form onsubmit="return confirm('Apakah yakin menghapus tutor?');" action="/admin/tutor/{{ $item->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-600 dark:hover:bg-gray-500/10 dark:hover:text-gray-400">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M14.7223 12.7585C14.7426 12.3448 14.4237 11.9929 14.01 11.9726C13.5963 11.9522 13.2444 12.2711 13.2241 12.6848L12.9999 17.2415C12.9796 17.6552 13.2985 18.0071 13.7122 18.0274C14.1259 18.0478 14.4778 17.7289 14.4981 17.3152L14.7223 12.7585Z" fill="#323544"/>
+                                                        <path d="M9.98802 11.9726C9.5743 11.9929 9.25542 12.3448 9.27577 12.7585L9.49993 17.3152C9.52028 17.7289 9.87216 18.0478 10.2859 18.0274C10.6996 18.0071 11.0185 17.6552 10.9981 17.2415L10.774 12.6848C10.7536 12.2711 10.4017 11.9522 9.98802 11.9726Z" fill="#323544"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.249 2C9.00638 2 7.99902 3.00736 7.99902 4.25V5H5.5C4.25736 5 3.25 6.00736 3.25 7.25C3.25 8.28958 3.95503 9.16449 4.91303 9.42267L5.54076 19.8848C5.61205 21.0729 6.59642 22 7.78672 22H16.2113C17.4016 22 18.386 21.0729 18.4573 19.8848L19.085 9.42267C20.043 9.16449 20.748 8.28958 20.748 7.25C20.748 6.00736 19.7407 5 18.498 5H15.999V4.25C15.999 3.00736 14.9917 2 13.749 2H10.249ZM14.499 5V4.25C14.499 3.83579 14.1632 3.5 13.749 3.5H10.249C9.83481 3.5 9.49902 3.83579 9.49902 4.25V5H14.499ZM5.5 6.5C5.08579 6.5 4.75 6.83579 4.75 7.25C4.75 7.66421 5.08579 8 5.5 8H18.498C18.9123 8 19.248 7.66421 19.248 7.25C19.248 6.83579 18.9123 6.5 18.498 6.5H5.5ZM6.42037 9.5H17.5777L16.96 19.7949C16.9362 20.191 16.6081 20.5 16.2113 20.5H7.78672C7.38995 20.5 7.06183 20.191 7.03807 19.7949L6.42037 9.5Z" fill="#323544"/>
+                                                    </svg>
+                                                    Hapus Tutor
+                                                </butt>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
@@ -244,77 +202,79 @@
                     </tbody>
                 </table>
             </div>
-            <div class="border-t border-gray-200 px-6 py-4 dark:border-gray-800">
-                <div class="flex items-center justify-between">
-                    <button
-                        class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-2 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 sm:px-3.5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
-                        <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M2.58301 9.99868C2.58272 10.1909 2.65588 10.3833 2.80249 10.53L7.79915 15.5301C8.09194 15.8231 8.56682 15.8233 8.85981 15.5305C9.15281 15.2377 9.15297 14.7629 8.86018 14.4699L5.14009 10.7472L16.6675 10.7472C17.0817 10.7472 17.4175 10.4114 17.4175 9.99715C17.4175 9.58294 17.0817 9.24715 16.6675 9.24715L5.14554 9.24715L8.86017 5.53016C9.15297 5.23717 9.15282 4.7623 8.85983 4.4695C8.56684 4.1767 8.09197 4.17685 7.79917 4.46984L2.84167 9.43049C2.68321 9.568 2.58301 9.77087 2.58301 9.99715C2.58301 9.99766 2.58301 9.99817 2.58301 9.99868Z"
-                                fill=""></path>
-                        </svg>
-                        <span class="hidden sm:inline"> Previous </span>
-                    </button>
-                    <span class="block text-sm font-medium text-gray-700 sm:hidden dark:text-gray-400">
-                        Page 1 of 10
-                    </span>
-                    <ul class="hidden items-center gap-0.5 sm:flex">
-                        <li>
-                            <a href="#"
-                                class="bg-brand-500/[0.08] text-theme-sm text-brand-500 hover:bg-brand-500/[0.08] hover:text-brand-500 dark:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium">
-                                1
+            @if ($tutor->hasPages())
+                <div class="border-t border-gray-200 px-6 py-4 dark:border-gray-800">
+                    <div class="flex items-center justify-between">
+                        @if ($tutor->onFirstPage())
+                            <button disabled
+                                class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-gray-100 px-2 py-2 font-medium text-gray-400 sm:px-3.5 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-500">
+                                <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2.58301 9.99868C2.58272 10.1909 2.65588 10.3833 2.80249 10.53L7.79915 15.5301C8.09194 15.8231 8.56682 15.8233 8.85981 15.5305C9.15281 15.2377 9.15297 14.7629 8.86018 14.4699L5.14009 10.7472L16.6675 10.7472C17.0817 10.7472 17.4175 10.4114 17.4175 9.99715C17.4175 9.58294 17.0817 9.24715 16.6675 9.24715L5.14554 9.24715L8.86017 5.53016C9.15297 5.23717 9.15282 4.7623 8.85983 4.4695C8.56684 4.1767 8.09197 4.17685 7.79917 4.46984L2.84167 9.43049C2.68321 9.568 2.58301 9.77087 2.58301 9.99715C2.58301 9.99766 2.58301 9.99817 2.58301 9.99868Z"
+                                        fill=""></path>
+                                </svg>
+                                Previous
+                            </button>
+                        @else
+                            <a href="{{ $tutor->previousPageUrl() }}"
+                                class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-2 font-medium text-gray-700 hover:bg-gray-50 sm:px-3.5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03]">
+                                <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2.58301 9.99868C2.58272 10.1909 2.65588 10.3833 2.80249 10.53L7.79915 15.5301C8.09194 15.8231 8.56682 15.8233 8.85981 15.5305C9.15281 15.2377 9.15297 14.7629 8.86018 14.4699L5.14009 10.7472L16.6675 10.7472C17.0817 10.7472 17.4175 10.4114 17.4175 9.99715C17.4175 9.58294 17.0817 9.24715 16.6675 9.24715L5.14554 9.24715L8.86017 5.53016C9.15297 5.23717 9.15282 4.7623 8.85983 4.4695C8.56684 4.1767 8.09197 4.17685 7.79917 4.46984L2.84167 9.43049C2.68321 9.568 2.58301 9.77087 2.58301 9.99715C2.58301 9.99766 2.58301 9.99817 2.58301 9.99868Z"
+                                        fill=""></path>
+                                </svg>
+                                Previous
                             </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
-                                2
+                        @endif
+
+                        <ul class="hidden items-center gap-0.5 sm:flex">
+                            @foreach ($tutor->getUrlRange(1, $tutor->lastPage()) as $page => $url)
+                                @if ($page == $tutor->currentPage())
+                                    <li>
+                                        <span
+                                            class="bg-brand-500/[0.08] text-theme-sm text-brand-500 dark:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium">
+                                            {{ $page }}
+                                        </span>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ $url }}"
+                                            class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
+                                            {{ $page }}
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+
+                        @if ($tutor->hasMorePages())
+                            <a href="{{ $tutor->nextPageUrl() }}"
+                                class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-2 font-medium text-gray-700 hover:bg-gray-50 sm:px-3.5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03]">
+                                Next
+                                <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M17.4175 9.9986C17.4178 10.1909 17.3446 10.3832 17.198 10.53L12.2013 15.5301C11.9085 15.8231 11.4337 15.8233 11.1407 15.5305C10.8477 15.2377 10.8475 14.7629 11.1403 14.4699L14.8604 10.7472L3.33301 10.7472C2.91879 10.7472 2.58301 10.4114 2.58301 9.99715C2.58301 9.58294 2.91879 9.24715 3.33301 9.24715L14.8549 9.24715L11.1403 5.53016C10.8475 5.23717 10.8477 4.7623 11.1407 4.4695C11.4336 4.1767 11.9085 4.17685 12.2013 4.46984L17.1588 9.43049C17.3173 9.568 17.4175 9.77087 17.4175 9.99715C17.4175 9.99763 17.4175 9.99812 17.4175 9.9986Z"
+                                        fill=""></path>
+                                </svg>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
-                                3
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
-                                ...
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
-                                8
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
-                                9
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-theme-sm hover:bg-brand-500/[0.08] hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center rounded-lg font-medium text-gray-700 dark:text-gray-400">
-                                10
-                            </a>
-                        </li>
-                    </ul>
-                    <button
-                        class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-2 py-2 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 sm:px-3.5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
-                        <span class="hidden sm:inline"> Next </span>
-                        <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M17.4175 9.9986C17.4178 10.1909 17.3446 10.3832 17.198 10.53L12.2013 15.5301C11.9085 15.8231 11.4337 15.8233 11.1407 15.5305C10.8477 15.2377 10.8475 14.7629 11.1403 14.4699L14.8604 10.7472L3.33301 10.7472C2.91879 10.7472 2.58301 10.4114 2.58301 9.99715C2.58301 9.58294 2.91879 9.24715 3.33301 9.24715L14.8549 9.24715L11.1403 5.53016C10.8475 5.23717 10.8477 4.7623 11.1407 4.4695C11.4336 4.1767 11.9085 4.17685 12.2013 4.46984L17.1588 9.43049C17.3173 9.568 17.4175 9.77087 17.4175 9.99715C17.4175 9.99763 17.4175 9.99812 17.4175 9.9986Z"
-                                fill=""></path>
-                        </svg>
-                    </button>
+                        @else
+                            <button disabled
+                                class="text-theme-sm shadow-theme-xs flex items-center gap-2 rounded-lg border border-gray-300 bg-gray-100 px-2 py-2 font-medium text-gray-400 sm:px-3.5 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-500">
+                                Next
+                                <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M17.4175 9.9986C17.4178 10.1909 17.3446 10.3832 17.198 10.53L12.2013 15.5301C11.9085 15.8231 11.4337 15.8233 11.1407 15.5305C10.8477 15.2377 10.8475 14.7629 11.1403 14.4699L14.8604 10.7472L3.33301 10.7472C2.91879 10.7472 2.58301 10.4114 2.58301 9.99715C2.58301 9.58294 2.91879 9.24715 3.33301 9.24715L14.8549 9.24715L11.1403 5.53016C10.8475 5.23717 10.8477 4.7623 11.1407 4.4695C11.4336 4.1767 11.9085 4.17685 12.2013 4.46984L17.1588 9.43049C17.3173 9.568 17.4175 9.77087 17.4175 9.99715C17.4175 9.99763 17.4175 9.99812 17.4175 9.9986Z"
+                                        fill=""></path>
+                                </svg>
+                            </button>
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection
