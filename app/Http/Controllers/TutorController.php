@@ -8,14 +8,27 @@ use Illuminate\Support\Facades\File;
 
 class TutorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tutor = User::where('role', 'tutor')->orderBy('id', 'desc')->paginate(2);
+        $query = User::where('role', 'tutor')->orderBy('id', 'desc');
 
-        return view('pages.admin.tutor.index', [
-            'title' => 'Kelola Tutor',
-            'tutor' => $tutor
-        ]);
+    if ($request->search) {
+        $search = $request->search;
+
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%')
+            ->orWhere('degree', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->orWhere('phone', 'like', '%' . $search . '%');
+        });
+    }
+
+    $tutor = $query->paginate(2);
+
+    return view('pages.admin.tutor.index', [
+        'title' => 'Kelola Tutor',
+        'tutor' => $tutor
+    ]);
     }
 
     public function create()
