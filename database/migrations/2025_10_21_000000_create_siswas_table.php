@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('school');
+            $table->date('enter_date');
             $table->timestamps();
+
+            $table->foreignId('class_id')->nullable()->constrained('kelas')->onUpdate('cascade')->nullOnDelete();
         });
     }
 

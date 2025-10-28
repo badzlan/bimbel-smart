@@ -173,8 +173,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="px-5 py-10 text-center text-gray-500 dark:text-gray-400">
-                                    Data tutor tidak ditemukan.
+                                <td colspan="7" class="p-5 text-center text-gray-500 dark:text-gray-400">
+                                    Belum ada tutor.
                                 </td>
                             </tr>
                         @endforelse

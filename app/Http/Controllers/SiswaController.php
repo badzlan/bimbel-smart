@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -9,10 +10,23 @@ class SiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Siswa::orderBy('id', 'desc');
+
+        if ($request->search) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'ilike', '%' . $search . '%')
+                ->orWhere('school', 'ilike', '%' . $search . '%');
+            });
+        }
+
+        $siswa = $query->paginate(2);
         return view('pages.admin.siswa.index', [
-            'title' => 'Kelola Siswa'
+            'title' => 'Kelola Siswa',
+            'siswa' => $siswa
         ]);
     }
 
@@ -31,7 +45,17 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!$request->name || !$request->school || !$request->enter_date) {
+            return back()->with('error', 'Data siswa tidak boleh kosong!');
+        }
+
+        Siswa::create([
+            'name' => $request->name,
+            'school' => $request->school,
+            'enter_date' => $request->enter_date
+        ]);
+
+        return redirect('/admin/siswa')->with('success', 'Berhasil menambahkan siswa!');
     }
 
     /**

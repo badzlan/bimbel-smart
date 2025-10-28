@@ -12,23 +12,23 @@ class TutorController extends Controller
     {
         $query = User::where('role', 'tutor')->orderBy('id', 'desc');
 
-    if ($request->search) {
-        $search = $request->search;
+        if ($request->search) {
+            $search = $request->search;
 
-        $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', '%' . $search . '%')
-            ->orWhere('degree', 'like', '%' . $search . '%')
-            ->orWhere('email', 'like', '%' . $search . '%')
-            ->orWhere('phone', 'like', '%' . $search . '%');
-        });
-    }
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'ilike', '%' . $search . '%')
+                ->orWhere('degree', 'ilike', '%' . $search . '%')
+                ->orWhere('email', 'ilike', '%' . $search . '%')
+                ->orWhere('phone', 'ilike', '%' . $search . '%');
+            });
+        }
 
-    $tutor = $query->paginate(2);
+        $tutor = $query->paginate(2);
 
-    return view('pages.admin.tutor.index', [
-        'title' => 'Kelola Tutor',
-        'tutor' => $tutor
-    ]);
+        return view('pages.admin.tutor.index', [
+            'title' => 'Kelola Tutor',
+            'tutor' => $tutor
+        ]);
     }
 
     public function create()
