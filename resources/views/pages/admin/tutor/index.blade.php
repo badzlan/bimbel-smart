@@ -120,8 +120,8 @@
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                                        @if ($item->kelas)
-                                            {{ $item->kelas->nama_kelas }}
+                                        @if ($item->class_id)
+                                            {{ $item->kelas->name }}
                                         @else
                                             Belum punya kelas
                                         @endif

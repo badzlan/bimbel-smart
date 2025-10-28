@@ -1,53 +1,12 @@
 @extends('layouts.main')
 
-@php
-    // Data siswa diperbarui tanpa kolom foto
-    $siswa = [
-        [
-            'id' => 1,
-            'nama_siswa' => 'Badzlan Nur',
-            'kelas' => 'Kelas 9A',
-            'asal_sekolah' => 'SMPN 1 Bogor',
-            'tanggal_masuk' => '12 Oktober 2025',
-        ],
-        [
-            'id' => 2,
-            'nama_siswa' => 'Budi Santoso',
-            'kelas' => 'Kelas 11 IPA 2',
-            'asal_sekolah' => 'SMAN 3 Jakarta',
-            'tanggal_masuk' => '15 Juli 2024',
-        ],
-        [
-            'id' => 3,
-            'nama_siswa' => 'Citra Lestari',
-            'kelas' => 'Kelas 6B',
-            'asal_sekolah' => 'SDN 5 Pagi',
-            'tanggal_masuk' => '20 Agustus 2025',
-        ],
-        [
-            'id' => 4,
-            'nama_siswa' => 'Dewi Anggraini',
-            'kelas' => 'Kelas 8C',
-            'asal_sekolah' => 'SMP Tunas Bangsa',
-            'tanggal_masuk' => '01 September 2024',
-        ],
-        [
-            'id' => 5,
-            'nama_siswa' => 'Eko Prasetyo',
-            'kelas' => 'Kelas 12 IPS 1',
-            'asal_sekolah' => 'SMA Harapan Kita',
-            'tanggal_masuk' => '10 Juli 2023',
-        ],
-    ];
-@endphp
-
 @section('content')
     @include('components.alerts')
     @include('components.breadcrumb')
 
     <form action="/admin/kelas" method="POST">
         @csrf
-        <div class="space-y-6">
+        <div class="space-y-6 mt-5">
             <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] mt-6">
                 <div class="border-b border-gray-200 px-6 py-4 dark:border-gray-800">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">
@@ -59,19 +18,19 @@
                         <div class="col-span-full">
                             <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
                                 <div>
-                                    <label for="product-name"
+                                    <label for="name"
                                         class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Nama
-                                        Kelas</label>
-                                    <input type="text" id="product-name"
+                                        Kelas<span class="text-error-500">*</span></label></label>
+                                    <input type="text" id="name" name="name"
                                         class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                                         placeholder="Masukkan nama kelas">
                                 </div>
                                 <div>
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                        Mentor
+                                        Mentor<span class="text-error-500">*</span></label>
                                     </label>
                                     <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent">
-                                        <select
+                                        <select name="tutor"
                                             class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                                             :class="isOptionSelected & amp; & amp;
                                             'text-gray-800 dark:text-white/90'"
@@ -80,26 +39,13 @@
                                                 class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
                                                 Pilih Mentor
                                             </option>
-                                            <option value="Badzlan Nur S.Tr.Kom., M.Kom."
+                                            @forelse ($tutor as $item)
+                                            <option value="{{ $item->id }}"
                                                 class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                                                Badzlan Nur S.Tr.Kom., M.Kom.
+                                                {{ $item->name }} {{ $item->degree }}
                                             </option>
-                                            <option value="Andi Wijaya S.Pd., M.Pd."
-                                                class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                                                Andi Wijaya S.Pd., M.Pd.
-                                            </option>
-                                            <option value="Rina Hartono S.Si."
-                                                class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                                                Rina Hartono S.Si.
-                                            </option>
-                                            <option value="Siti Aminah S.Hum., M.A."
-                                                class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                                                Siti Aminah S.Hum., M.A.
-                                            </option>
-                                            <option value="Guntur Perkasa S.T., M.T."
-                                                class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                                                Guntur Perkasa S.T., M.T.
-                                            </option>
+                                            @empty
+                                            @endforelse
                                         </select>
                                         <span
                                             class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-700 dark:text-gray-400">
@@ -171,20 +117,20 @@
                                     </td>
                                     <td class="px-5 py-4 whitespace-nowrap">
                                         <span
-                                            class="text-sm font-medium text-gray-700 dark:text-gray-400">{{ $item['nama_siswa'] }}</span>
+                                            class="text-sm font-medium text-gray-700 dark:text-gray-400">{{ $item->name }}</span>
                                     </td>
                                     <td class="px-5 py-4 whitespace-nowrap">
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item['asal_sekolah'] }}</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->school }}</p>
                                     </td>
                                     <td class="px-5 py-4 whitespace-nowrap">
-                                        <input type="checkbox"
+                                        <input type="checkbox" name="siswa[]" value="{{ $item->id }}"
                                     class="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500">
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="px-5 py-10 text-center text-gray-500 dark:text-gray-400">
-                                        Data siswa tidak ditemukan.
+                                    <td colspan="7" class="p-5 text-center text-gray-500 dark:text-gray-400">
+                                        Semua siswa memiliki kelas.
                                     </td>
                                 </tr>
                             @endforelse

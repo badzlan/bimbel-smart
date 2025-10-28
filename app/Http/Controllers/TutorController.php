@@ -10,20 +10,23 @@ class TutorController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::where('role', 'tutor')->orderBy('id', 'desc');
+        $query = User::with(['kelas'])->where('role', 'tutor')->orderBy('id', 'desc');
 
         if ($request->search) {
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'ilike', '%' . $search . '%')
-                ->orWhere('degree', 'ilike', '%' . $search . '%')
-                ->orWhere('email', 'ilike', '%' . $search . '%')
-                ->orWhere('phone', 'ilike', '%' . $search . '%');
+                    ->orWhere('degree', 'ilike', '%' . $search . '%')
+                    ->orWhere('email', 'ilike', '%' . $search . '%')
+                    ->orWhere('phone', 'ilike', '%' . $search . '%')
+                    ->orWhereHas('kelas', function ($k) use ($search) {
+                        $k->where('name', 'ilike', '%' . $search . '%');
+                    });
             });
         }
 
-        $tutor = $query->paginate(2);
+        $tutor = $query->paginate(10);
 
         return view('pages.admin.tutor.index', [
             'title' => 'Kelola Tutor',

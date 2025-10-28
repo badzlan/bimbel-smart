@@ -103,7 +103,7 @@
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->name }}</p>
+                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-400">{{ $item->name }}</span>
                                     </div>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
