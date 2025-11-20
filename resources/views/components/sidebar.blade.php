@@ -29,6 +29,14 @@
                             <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Dashboard</span>
                         </a>
                     </li>
+                    {{-- <li>
+                        <a href="/admin/fee" class="menu-item group {{ $title === 'Total Fee Tutor' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75 3.25C4.50736 3.25 3.5 4.25736 3.5 5.5V18.5C3.5 19.7426 4.50736 20.75 5.75 20.75H18.75C19.9926 20.75 21 19.7426 21 18.5V9.5C21 8.25736 19.9926 7.25 18.75 7.25H18.5V5.5C18.5 4.25736 17.4926 3.25 16.25 3.25H5.75ZM17 7.25V5.5C17 5.08579 16.6642 4.75 16.25 4.75H5.75C5.33579 4.75 5 5.08579 5 5.5V7.25H17ZM5 8.75V18.5C5 18.9142 5.33579 19.25 5.75 19.25H18.75C19.1642 19.25 19.5 18.9142 19.5 18.5V9.5C19.5 9.08579 19.1642 8.75 18.75 8.75H5Z" fill="#323544"/>
+                            </svg>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Total Fee</span>
+                        </a>
+                    </li> --}}
                 </ul>
                 <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
                     <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">MANAJEMEN DATA</span>
@@ -66,22 +74,22 @@
                     </li>
                 </ul>
                 <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
-                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">JADWAL & PEMBAYARAN</span>
+                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">JADWAL & REKAP ABSENSI</span>
                     <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
                     </svg>
                 </h3>
                 <ul class="mb-6 flex flex-col gap-1">
                     <li>
-                        <a href="/admin/fee" class="menu-item group {{ $title === 'Total Fee Tutor' ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75 3.25C4.50736 3.25 3.5 4.25736 3.5 5.5V18.5C3.5 19.7426 4.50736 20.75 5.75 20.75H18.75C19.9926 20.75 21 19.7426 21 18.5V9.5C21 8.25736 19.9926 7.25 18.75 7.25H18.5V5.5C18.5 4.25736 17.4926 3.25 16.25 3.25H5.75ZM17 7.25V5.5C17 5.08579 16.6642 4.75 16.25 4.75H5.75C5.33579 4.75 5 5.08579 5 5.5V7.25H17ZM5 8.75V18.5C5 18.9142 5.33579 19.25 5.75 19.25H18.75C19.1642 19.25 19.5 18.9142 19.5 18.5V9.5C19.5 9.08579 19.1642 8.75 18.75 8.75H5Z" fill="#323544"/>
+                        <a href="/admin/sesi" class="menu-item group {{ $title === 'Sesi Pertemuan' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.41421 2 8.75 2.33579 8.75 2.75V3.75H15.25V2.75C15.25 2.33579 15.5858 2 16 2C16.4142 2 16.75 2.33579 16.75 2.75V3.75H18.5C19.7426 3.75 20.75 4.75736 20.75 6V9V19C20.75 20.2426 19.7426 21.25 18.5 21.25H5.5C4.25736 21.25 3.25 20.2426 3.25 19V9V6C3.25 4.75736 4.25736 3.75 5.5 3.75H7.25V2.75C7.25 2.33579 7.58579 2 8 2ZM8 5.25H5.5C5.08579 5.25 4.75 5.58579 4.75 6V8.25H19.25V6C19.25 5.58579 18.9142 5.25 18.5 5.25H16H8ZM19.25 9.75H4.75V19C4.75 19.4142 5.08579 19.75 5.5 19.75H18.5C18.9142 19.75 19.25 19.4142 19.25 19V9.75Z" fill="currentColor"></path>
                             </svg>
-                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Total Fee</span>
+                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Sesi Pertemuan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/sesi" class="menu-item group {{ $title === 'Sesi Pertemuan' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                        <a href="/admin/pertemuan" class="menu-item group {{ $title === 'Rekap Per Pertemuan' || $title === 'Rekap Pertemuan Detail' ? 'menu-item-active' : 'menu-item-inactive' }}">
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.32031 4.75C3.62996 4.75 3.07031 5.30964 3.07031 6C3.07031 6.69036 3.62996 7.25 4.32031 7.25H4.33031C5.02067 7.25 5.58031 6.69036 5.58031 6C5.58031 5.30964 5.02067 4.75 4.33031 4.75H4.32031Z" fill="#323544"/>
                                 <path d="M8.31055 5.25C7.89633 5.25 7.56055 5.58579 7.56055 6C7.56055 6.41421 7.89633 6.75 8.31055 6.75L20.3105 6.75C20.7248 6.75 21.0605 6.41421 21.0605 6C21.0605 5.58579 20.7248 5.25 20.3105 5.25H8.31055Z" fill="#323544"/>
@@ -90,30 +98,14 @@
                                 <path d="M3.07031 12C3.07031 11.3096 3.62996 10.75 4.32031 10.75H4.33031C5.02067 10.75 5.58031 11.3096 5.58031 12C5.58031 12.6904 5.02067 13.25 4.33031 13.25H4.32031C3.62996 13.25 3.07031 12.6904 3.07031 12Z" fill="#323544"/>
                                 <path d="M4.32031 16.75C3.62996 16.75 3.07031 17.3096 3.07031 18C3.07031 18.6904 3.62996 19.25 4.32031 19.25H4.33031C5.02067 19.25 5.58031 18.6904 5.58031 18C5.58031 17.3096 5.02067 16.75 4.33031 16.75H4.32031Z" fill="#323544"/>
                             </svg>
-                            <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Sesi Pertemuan</span>
-                        </a>
-                    </li>
-                </ul>
-                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
-                    <span class="menu-group-title" :class="sidebarToggle ? 'xl:hidden' : ''">REKAP ABSENSI</span>
-                    <svg :class="sidebarToggle ? 'xl:block hidden' : 'hidden'" class="menu-group-icon mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z" fill="currentColor"></path>
-                    </svg>
-                </h3>
-                <ul class="mb-6 flex flex-col gap-1">
-                    <li>
-                        <a href="/admin/pertemuan" class="menu-item group {{ $title === 'Rekap Per Pertemuan' || $title === 'Rekap Pertemuan Detail' ? 'menu-item-active' : 'menu-item-inactive' }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20.75 18.5V8.67794L19.25 10.1779V18.5C19.25 18.9142 18.9142 19.25 18.5 19.25H5.5C5.08579 19.25 4.75 18.9142 4.75 18.5V5.5C4.75 5.08579 5.08579 4.75 5.5 4.75H18.314L19.2936 3.77034C19.3842 3.67974 19.4806 3.59848 19.5816 3.52657C19.2607 3.35027 18.8921 3.25 18.5 3.25H5.5C4.25736 3.25 3.25 4.25736 3.25 5.5V18.5C3.25 19.7426 4.25736 20.75 5.5 20.75H18.5C19.7426 20.75 20.75 19.7426 20.75 18.5Z" fill="#323544"/>
-                                <path d="M20.4838 6.51868C20.7767 6.22578 20.7767 5.75091 20.4838 5.45802C20.1909 5.16512 19.7161 5.16512 19.4232 5.45802L11.9298 12.9514L8.57686 9.59849C8.28396 9.3056 7.80909 9.3056 7.5162 9.5985C7.22331 9.89139 7.22331 10.3663 7.5162 10.6592L11.3995 14.5424C11.6924 14.8353 12.1672 14.8353 12.4601 14.5424L20.4838 6.51868Z" fill="#323544"/>
-                            </svg>
                             <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Rekap Per Pertemuan</span>
                         </a>
                     </li>
                     <li>
                         <a href="/admin/bulan" class="menu-item group {{ $title === 'Rekap Per Bulan' ? 'menu-item-active' : 'menu-item-inactive' }}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.41421 2 8.75 2.33579 8.75 2.75V3.75H15.25V2.75C15.25 2.33579 15.5858 2 16 2C16.4142 2 16.75 2.33579 16.75 2.75V3.75H18.5C19.7426 3.75 20.75 4.75736 20.75 6V9V19C20.75 20.2426 19.7426 21.25 18.5 21.25H5.5C4.25736 21.25 3.25 20.2426 3.25 19V9V6C3.25 4.75736 4.25736 3.75 5.5 3.75H7.25V2.75C7.25 2.33579 7.58579 2 8 2ZM8 5.25H5.5C5.08579 5.25 4.75 5.58579 4.75 6V8.25H19.25V6C19.25 5.58579 18.9142 5.25 18.5 5.25H16H8ZM19.25 9.75H4.75V19C4.75 19.4142 5.08579 19.75 5.5 19.75H18.5C18.9142 19.75 19.25 19.4142 19.25 19V9.75Z" fill="currentColor"></path>
+                                <path d="M20.75 18.5V8.67794L19.25 10.1779V18.5C19.25 18.9142 18.9142 19.25 18.5 19.25H5.5C5.08579 19.25 4.75 18.9142 4.75 18.5V5.5C4.75 5.08579 5.08579 4.75 5.5 4.75H18.314L19.2936 3.77034C19.3842 3.67974 19.4806 3.59848 19.5816 3.52657C19.2607 3.35027 18.8921 3.25 18.5 3.25H5.5C4.25736 3.25 3.25 4.25736 3.25 5.5V18.5C3.25 19.7426 4.25736 20.75 5.5 20.75H18.5C19.7426 20.75 20.75 19.7426 20.75 18.5Z" fill="#323544"/>
+                                <path d="M20.4838 6.51868C20.7767 6.22578 20.7767 5.75091 20.4838 5.45802C20.1909 5.16512 19.7161 5.16512 19.4232 5.45802L11.9298 12.9514L8.57686 9.59849C8.28396 9.3056 7.80909 9.3056 7.5162 9.5985C7.22331 9.89139 7.22331 10.3663 7.5162 10.6592L11.3995 14.5424C11.6924 14.8353 12.1672 14.8353 12.4601 14.5424L20.4838 6.51868Z" fill="#323544"/>
                             </svg>
                             <span class="menu-item-text" :class="sidebarToggle ? 'xl:hidden' : ''">Rekap Per Bulan</span>
                         </a>

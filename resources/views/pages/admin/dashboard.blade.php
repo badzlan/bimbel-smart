@@ -161,6 +161,9 @@
                                     ['image' => 'images/admin.jpg', 'name' => 'Tutor B', 'fee' => 'Rp 50.000', 'status' => 'belum-dibayar'],
                                     ['image' => 'images/admin.jpg', 'name' => 'Tutor C', 'fee' => 'Rp 3.000.000', 'status' => 'belum-dibayar'],
                                     ['image' => 'images/admin.jpg', 'name' => 'Tutor D', 'fee' => 'Rp 750.000', 'status' => 'sudah-dibayar'],
+                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor E', 'fee' => 'Rp 1.650.000', 'status' => 'belum-dibayar'],
+                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor F', 'fee' => 'Rp 450.000', 'status' => 'sudah-dibayar'],
+                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor G', 'fee' => 'Rp 600.000', 'status' => 'sudah-dibayar'],
                                 ];
                             @endphp
 

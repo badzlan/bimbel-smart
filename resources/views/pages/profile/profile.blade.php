@@ -90,8 +90,19 @@
                         <div>
                             <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                                 <div class="col-span-2">
-                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Foto Profil</label>
-                                    <input type="file" name="image" class="focus:border-ring-brand-300 shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400">
+                                    <div class="flex justify-center mb-3">
+                                        <div class="h-40 w-40 aspect-square">
+                                            <img src="{{ auth()->user()->image }}" id="profileImagePreview"
+                                                class="h-full w-full rounded-full object-cover border border-gray-300 dark:border-gray-700 cursor-pointer"
+                                                onclick="document.getElementById('profileImageInput').click()" />
+                                        </div>
+                                    </div>
+                                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                                        Foto Profil
+                                    </label>
+                                    <input type="file" name="image" id="profileImageInput"
+                                        class="focus:border-ring-brand-300 shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400"
+                                        accept="image/*">
                                 </div>
                                 <div class="col-span-2 lg:col-span-1">
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Nama</label>
@@ -120,4 +131,22 @@
             </div>
         </div>
     </div>
+
+@push('scripts')
+<script>
+    const profileImageInput = document.getElementById('profileImageInput');
+    const profileImagePreview = document.getElementById('profileImagePreview');
+
+    profileImageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                profileImagePreview.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+@endpush
 @endsection

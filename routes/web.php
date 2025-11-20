@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/tutor', TutorController::class);
         Route::resource('/siswa', SiswaController::class);
         Route::resource('/kelas', KelasController::class);
+        Route::resource('/sesi', SesiController::class);
 
         Route::get('/pertemuan', function () {
             return view('pages.admin.absensi.pertemuan', [
@@ -54,9 +55,9 @@ Route::middleware(['auth'])->group(function () {
             ]);
         });
 
-        Route::get('/pertemuan/detail', function () {
+        Route::get('/pertemuan/{id}', function ($id) {
             return view('pages.admin.absensi.detail', [
-                'title' => 'Rekap Pertemuan Detail'
+                'title' => 'Detail Rekap Pertemuan '.  $id
             ]);
         });
 
@@ -66,11 +67,17 @@ Route::middleware(['auth'])->group(function () {
             ]);
         });
 
-        Route::resource('/sesi', SesiController::class);
-
         Route::get('/fee', function () {
             return view('pages.admin.fee', [
                 'title' => 'Total Fee Tutor'
+            ]);
+        });
+    });
+
+    Route::prefix('/tutor')->group(function () {
+        Route::get('/', function () {
+            return view('pages.tutor.dashboard', [
+                'title' => 'Dashboard Tutor'
             ]);
         });
     });
