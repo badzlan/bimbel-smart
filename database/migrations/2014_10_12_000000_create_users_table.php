@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->default('/images/logo.png');
+            $table->string('image')->default('/images/default.png');
             $table->string('name');
             $table->string('degree');
             $table->string('email')->unique();

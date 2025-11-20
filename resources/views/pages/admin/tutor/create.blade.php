@@ -143,17 +143,17 @@
 @endsection
 
 @push('scripts')
-<script>
-    document.getElementById('imageInput').addEventListener('change', function (e) {
-        const preview = document.getElementById('imagePreview');
-        const file = this.files[0];
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            const file = this.files[0];
 
-        if (!file) {
-            preview.src = "";
-            return;
-        }
+            if (!file) {
+                preview.src = "";
+                return;
+            }
 
-        preview.src = URL.createObjectURL(file);
-    });
-</script>
+            preview.src = URL.createObjectURL(file);
+        });
+    </script>
 @endpush

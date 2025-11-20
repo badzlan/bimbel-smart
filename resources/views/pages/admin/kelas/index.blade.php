@@ -145,8 +145,11 @@
                                 </td>
                             </tr>
                         @empty
-
-
+                        <tr>
+                            <td colspan="7" class="p-5 text-center text-gray-500 dark:text-gray-400">
+                                Belum ada tutor.
+                            </td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
