@@ -2,6 +2,7 @@
 
 @section('content')
     @include('components.alerts')
+    <div class="mt-5"></div>
     @include('components.breadcrumb')
 
     <form action="/admin/kelas" method="POST">
@@ -23,21 +24,21 @@
                                         Kelas<span class="text-error-500">*</span></label></label>
                                     <input type="text" id="name" name="name"
                                         class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
-                                        placeholder="Masukkan nama kelas">
+                                        placeholder="Masukkan nama kelas" required>
                                 </div>
                                 <div>
                                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                        Mentor<span class="text-error-500">*</span></label>
+                                        Tutor<span class="text-error-500">*</span></label>
                                     </label>
                                     <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent">
                                         <select name="tutor"
                                             class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
                                             :class="isOptionSelected & amp; & amp;
                                             'text-gray-800 dark:text-white/90'"
-                                            @change="isOptionSelected = true">
+                                            @change="isOptionSelected = true" required>
                                             <option value=""
                                                 class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                                                Pilih Mentor
+                                                Pilih Tutor
                                             </option>
                                             @forelse ($tutor as $item)
                                             <option value="{{ $item->id }}"

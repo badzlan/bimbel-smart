@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Siswa;
@@ -9,35 +7,29 @@ use Illuminate\Http\Request;
 
 class KelasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        $query = Kelas::with(['tutor'])->withCount('siswa')->orderBy('id', 'desc');
+        $query = Kelas::with(['tutor'])
+            ->withCount('siswa')
+            ->orderBy('id', 'desc');
 
         if ($request->search) {
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
-                $q->where('name', 'ilike', '%' . $search . '%')
-                    ->orWhereHas('tutor', function ($t) use ($search) {
-                        $t->where('name', 'ilike', '%' . $search . '%');
-                    });
+                $q->where('name', 'ilike', '%' . $search . '%')->orWhereHas('tutor', function ($t) use ($search) {
+                    $t->where('name', 'ilike', '%' . $search . '%');
+                });
             });
-
         }
 
         $kelas = $query->paginate(10);
         return view('pages.admin.kelas.index', [
             'title' => 'Kelola Kelas',
-            'kelas' => $kelas
+            'kelas' => $kelas,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $tutor = User::where('role', 'tutor')->whereNull('class_id')->orderBy('id', 'desc')->get();
@@ -46,67 +38,108 @@ class KelasController extends Controller
         return view('pages.admin.kelas.create', [
             'title' => 'Tambah Kelas',
             'tutor' => $tutor,
-            'siswa' => $siswa
+            'siswa' => $siswa,
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        if (!$request->name || !$request->tutor || !$request->siswa) {
-            return back()->with('error', 'Data kelas tidak boleh kosong!');
-        }
+        $request->validate([
+            'name' => 'required',
+            'tutor' => 'required',
+            'siswa' => 'required',
+        ]);
 
         $kelas = Kelas::create([
             'name' => $request->name,
         ]);
 
         User::where('id', $request->tutor)->update([
-            'class_id' => $kelas->id
+            'class_id' => $kelas->id,
         ]);
 
         foreach ($request->siswa as $siswa) {
             Siswa::where('id', $siswa)->update([
-                'class_id' => $kelas->id
+                'class_id' => $kelas->id,
             ]);
         }
 
         return redirect('/admin/kelas')->with('success', 'Berhasil menambahkan siswa!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
+        $kelas = Kelas::findOrFail($id);
+
+        $tutor = User::where('role', 'tutor')->where(function ($q) use ($kelas) {
+                    $q->whereNull('class_id')->orWhere('class_id', $kelas->id);
+                })->orderBy('id', 'desc')->get();
+
+        $siswa = Siswa::where(function ($q) use ($id) {
+                    $q->whereNull('class_id')->orWhere('class_id', $id);
+                })->orderBy('id', 'desc')->get();
+
         return view('pages.admin.kelas.edit', [
-            'title' => 'Edit Kelas'
+            'title' => 'Edit Kelas',
+            'kelas' => $kelas,
+            'tutor' => $tutor,
+            'siswa' => $siswa,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        // $kelas = Kelas::findOrFail($id);
+        // dd($kelas->tutor);
+        $request->validate([
+            'name' => 'required',
+            'tutor' => 'required',
+            'siswa' => 'required',
+        ]);
+
+        $kelas = Kelas::findOrFail($id);
+
+        $kelas->update([
+            'name' => $request->name,
+        ]);
+
+        $currentTutor = $kelas->tutor;
+        $newTutorId = $request->tutor;
+
+        if ($currentTutor && $currentTutor->id != $newTutorId) {
+            User::where('id', $currentTutor->id)->update(['class_id' => null]);
+        }
+
+        User::where('id', $newTutorId)->update([
+            'class_id' => $kelas->id,
+        ]);
+
+        $selectedStudents = $request->siswa;
+        $currentStudents = $kelas->siswa->pluck('id')->toArray();
+        $removeStudents = array_diff($currentStudents, $selectedStudents);
+        $addStudents = array_diff($selectedStudents, $currentStudents);
+
+        if (!empty($removeStudents)) {
+            Siswa::whereIn('id', $removeStudents)->update([
+                'class_id' => null,
+            ]);
+        }
+
+        if (!empty($addStudents)) {
+            Siswa::whereIn('id', $addStudents)->update([
+                'class_id' => $kelas->id,
+            ]);
+        }
+
+        return redirect('/admin/kelas')->with('success', 'Berhasil mengubah kelas!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $kelas = Kelas::findOrFail($id);
+
+        $kelas->delete();
+
+        return back()->with('success', 'Berhasil menghapus kelas!');
     }
 }
