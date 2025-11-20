@@ -27,7 +27,6 @@ class TutorController extends Controller
         }
 
         $tutor = $query->paginate(10);
-
         return view('pages.admin.tutor.index', [
             'title' => 'Kelola Tutor',
             'tutor' => $tutor
@@ -43,9 +42,14 @@ class TutorController extends Controller
 
     public function store(Request $request)
     {
-        if(!$request->name || !$request->degree || !$request->email || !$request->phone || !$request->password) {
-            return back()->with('error', 'Data tutor tidak boleh kosong!');
-        }
+        $request->validate([
+            'name' => 'required',
+            'degree' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'password' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
         $user = User::create([
             'name' => $request->name,
@@ -56,14 +60,12 @@ class TutorController extends Controller
             'role' => 'tutor',
         ]);
 
-        if($request->hasFile('image')) {
-            $filename = 'profile-' . $user->id . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move(public_path('images/profile'), $filename);
+        $filename = 'profile-' . $user->id . '.' . $request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images/profile'), $filename);
 
-            User::where('id', $user->id)->update([
-                'image' => '/images/profile/' . $filename
-            ]);
-        }
+        User::where('id', $user->id)->update([
+            'image' => '/images/profile/' . $filename
+        ]);
 
         return redirect('/admin/tutor')->with('success', 'Berhasil menambahkan tutor!');
     }
@@ -80,9 +82,12 @@ class TutorController extends Controller
 
     public function update(Request $request, string $id)
     {
-        if(!$request->name || !$request->degree || !$request->email || !$request->phone) {
-            return back()->with('error', 'Data tutor tidak boleh kosong!');
-        }
+        $request->validate([
+            'name' => 'required',
+            'degree' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+        ]);
 
         $user = User::where('id', $id)->first();
 

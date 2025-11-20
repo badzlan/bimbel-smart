@@ -159,7 +159,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apexcharts */ \"./node_modules/apexcharts/dist/apexcharts.common.js\");\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apexcharts__WEBPACK_IMPORTED_MODULE_0__);\n\n\n// ===== chartSix\nconst chart06 = () => {\n  const chartSixOptions = {\n    series: [{\n      name: \"Hadir\",\n      data: [34, 45, 31, 17, 12, 33, 45, 31]\n    }, {\n      name: \"Alpa\",\n      data: [13, 23, 20, 8, 13, 27, 13, 23]\n    }, {\n      name: \"Izin\",\n      data: [11, 17, 15, 15, 21, 14, 18, 20]\n    }, {\n      name: \"Sakit\",\n      data: [21, 7, 25, 13, 22, 8, 18, 20]\n    }],\n    colors: [\"#00c951\", \"#fb2c36\", \"#fd853a\", \"#2b7fff\"],\n    chart: {\n      fontFamily: \"Outfit, sans-serif\",\n      type: \"bar\",\n      height: 315,\n      toolbar: {\n        show: false\n      },\n      zoom: {\n        enabled: false\n      }\n    },\n    plotOptions: {\n      bar: {\n        horizontal: false,\n        columnWidth: \"39%\",\n        borderRadius: 10,\n        borderRadiusApplication: \"end\",\n        borderRadiusWhenStacked: \"last\"\n      }\n    },\n    dataLabels: {\n      enabled: false\n    },\n    xaxis: {\n      categories: [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\"],\n      axisBorder: {\n        show: false\n      },\n      axisTicks: {\n        show: false\n      }\n    },\n    legend: {\n      show: true,\n      position: \"top\",\n      horizontalAlign: \"left\",\n      fontFamily: \"Outfit\",\n      fontSize: \"14px\",\n      fontWeight: 400,\n      markers: {\n        size: 5,\n        shape: \"circle\",\n        radius: 999,\n        strokeWidth: 0\n      },\n      itemMargin: {\n        horizontal: 10,\n        vertical: 0\n      }\n    },\n    yaxis: {\n      title: false\n    },\n    grid: {\n      yaxis: {\n        lines: {\n          show: true\n        }\n      }\n    },\n    fill: {\n      opacity: 1\n    },\n    tooltip: {\n      x: {\n        show: false\n      },\n      y: {\n        formatter: function (val) {\n          return val;\n        }\n      }\n    }\n  };\n  const chartSelector = document.querySelectorAll(\"#chartSix\");\n  if (chartSelector.length) {\n    const chartSix = new (apexcharts__WEBPACK_IMPORTED_MODULE_0___default())(document.querySelector(\"#chartSix\"), chartSixOptions);\n    chartSix.render();\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chart06);\n\n//# sourceURL=webpack://tailadmin-pro/./src/js/components/charts/chart-06.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apexcharts */ \"./node_modules/apexcharts/dist/apexcharts.common.js\");\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apexcharts__WEBPACK_IMPORTED_MODULE_0__);\n\n\n// ===== chartSix\nconst chart06 = () => {\n  const chartSixOptions = {\n    series: [{\n      name: \"Direct\",\n      data: [44, 55, 41, 67, 22, 43, 55, 41]\n    }, {\n      name: \"Referral\",\n      data: [13, 23, 20, 8, 13, 27, 13, 23]\n    }, {\n      name: \"Organic Search\",\n      data: [11, 17, 15, 15, 21, 14, 18, 20]\n    }, {\n      name: \"Social\",\n      data: [21, 7, 25, 13, 22, 8, 18, 20]\n    }],\n    colors: [\"#2a31d8\", \"#465fff\", \"#7592ff\", \"#c2d6ff\"],\n    chart: {\n      fontFamily: \"Outfit, sans-serif\",\n      type: \"bar\",\n      stacked: true,\n      height: 315,\n      toolbar: {\n        show: false\n      },\n      zoom: {\n        enabled: false\n      }\n    },\n    plotOptions: {\n      bar: {\n        horizontal: false,\n        columnWidth: \"39%\",\n        borderRadius: 10,\n        borderRadiusApplication: \"end\",\n        borderRadiusWhenStacked: \"last\"\n      }\n    },\n    dataLabels: {\n      enabled: false\n    },\n    xaxis: {\n      categories: [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\"],\n      axisBorder: {\n        show: false\n      },\n      axisTicks: {\n        show: false\n      }\n    },\n    legend: {\n      show: true,\n      position: \"top\",\n      horizontalAlign: \"left\",\n      fontFamily: \"Outfit\",\n      fontSize: \"14px\",\n      fontWeight: 400,\n      markers: {\n        size: 5,\n        shape: \"circle\",\n        radius: 999,\n        strokeWidth: 0\n      },\n      itemMargin: {\n        horizontal: 10,\n        vertical: 0\n      }\n    },\n    yaxis: {\n      title: false\n    },\n    grid: {\n      yaxis: {\n        lines: {\n          show: true\n        }\n      }\n    },\n    fill: {\n      opacity: 1\n    },\n    tooltip: {\n      x: {\n        show: false\n      },\n      y: {\n        formatter: function (val) {\n          return val;\n        }\n      }\n    }\n  };\n  const chartSelector = document.querySelectorAll(\"#chartSix\");\n  if (chartSelector.length) {\n    const chartSix = new (apexcharts__WEBPACK_IMPORTED_MODULE_0___default())(document.querySelector(\"#chartSix\"), chartSixOptions);\n    chartSix.render();\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chart06);\n\n//# sourceURL=webpack://tailadmin-pro/./src/js/components/charts/chart-06.js?");
 
 /***/ }),
 
@@ -170,7 +170,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apexcharts */ \"./node_modules/apexcharts/dist/apexcharts.common.js\");\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apexcharts__WEBPACK_IMPORTED_MODULE_0__);\n\n\n// ===== chartSeven\nconst chart07 = () => {\n  const chartSevenOptions = {\n    series: [45, 10, 25, 15],\n    colors: [\"#00c951\", \"#fb2c36\", \"#fd853a\", \"#2b7fff\"],\n    labels: [\"Hadir\", \"Alpa\", \"Sakit\", \"Izin\"],\n    chart: {\n      fontFamily: \"Outfit, sans-serif\",\n      type: \"donut\",\n      width: 445,\n      height: 290\n    },\n    plotOptions: {\n      pie: {\n        donut: {\n          size: \"65%\",\n          background: \"transparent\",\n          labels: {\n            show: true,\n            value: {\n              show: true,\n              offsetY: 0\n            }\n          }\n        }\n      }\n    },\n    dataLabels: {\n      enabled: false\n    },\n    tooltip: {\n      enabled: false\n    },\n    stroke: {\n      show: false,\n      width: 4,\n      // Creates a gap between the series\n      colors: \"transparent\" // Gap color (use background color to make it seamless)\n    },\n    legend: {\n      show: true,\n      position: \"bottom\",\n      horizontalAlign: \"center\",\n      fontFamily: \"Outfit\",\n      fontSize: \"14px\",\n      fontWeight: 400,\n      markers: {\n        size: 5,\n        shape: \"circle\",\n        radius: 999,\n        strokeWidth: 0\n      },\n      itemMargin: {\n        horizontal: 10,\n        vertical: 0\n      }\n    },\n    responsive: [{\n      breakpoint: 640,\n      options: {\n        chart: {\n          width: 370,\n          height: 290\n        }\n      }\n    }]\n  };\n  const chartSelector = document.querySelectorAll(\"#chartSeven\");\n  if (chartSelector.length) {\n    const chartSeven = new (apexcharts__WEBPACK_IMPORTED_MODULE_0___default())(document.querySelector(\"#chartSeven\"), chartSevenOptions);\n    chartSeven.render();\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chart07);\n\n//# sourceURL=webpack://tailadmin-pro/./src/js/components/charts/chart-07.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apexcharts */ \"./node_modules/apexcharts/dist/apexcharts.common.js\");\n/* harmony import */ var apexcharts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apexcharts__WEBPACK_IMPORTED_MODULE_0__);\n\n\n// ===== chartSeven\nconst chart07 = () => {\n  const chartSevenOptions = {\n    series: [45, 65, 25],\n    colors: [\"#3641f5\", \"#7592ff\", \"#dde9ff\"],\n    labels: [\"Desktop\", \"Mobile\", \"Tablet\"],\n    chart: {\n      fontFamily: \"Outfit, sans-serif\",\n      type: \"donut\",\n      width: 445,\n      height: 290\n    },\n    plotOptions: {\n      pie: {\n        donut: {\n          size: \"65%\",\n          background: \"transparent\",\n          labels: {\n            show: true,\n            value: {\n              show: true,\n              offsetY: 0\n            }\n          }\n        }\n      }\n    },\n    dataLabels: {\n      enabled: false\n    },\n    tooltip: {\n      enabled: false\n    },\n    stroke: {\n      show: false,\n      width: 4,\n      // Creates a gap between the series\n      colors: \"transparent\" // Gap color (use background color to make it seamless)\n    },\n    legend: {\n      show: true,\n      position: \"bottom\",\n      horizontalAlign: \"center\",\n      fontFamily: \"Outfit\",\n      fontSize: \"14px\",\n      fontWeight: 400,\n      markers: {\n        size: 5,\n        shape: \"circle\",\n        radius: 999,\n        strokeWidth: 0\n      },\n      itemMargin: {\n        horizontal: 10,\n        vertical: 0\n      }\n    },\n    responsive: [{\n      breakpoint: 640,\n      options: {\n        chart: {\n          width: 370,\n          height: 290\n        }\n      }\n    }]\n  };\n  const chartSelector = document.querySelectorAll(\"#chartSeven\");\n  if (chartSelector.length) {\n    const chartSeven = new (apexcharts__WEBPACK_IMPORTED_MODULE_0___default())(document.querySelector(\"#chartSeven\"), chartSevenOptions);\n    chartSeven.render();\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chart07);\n\n//# sourceURL=webpack://tailadmin-pro/./src/js/components/charts/chart-07.js?");
 
 /***/ }),
 
@@ -1154,7 +1154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -1168,14 +1168,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -1188,7 +1188,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -1200,7 +1200,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -1212,12 +1212,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -1228,13 +1228,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/js/index.js");
-/******/
+/******/ 	
 /******/ })()
 ;

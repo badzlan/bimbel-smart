@@ -7,8 +7,9 @@
         <title>
             {{ $title ?? 'Dashboard' }} | Bimbel SMART
         </title>
-        <link rel="icon" href="{{ asset('images/logo.png') }}">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link rel="icon" href="/images/logo.png">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
     </head>
     <body
         x-data="{ page: 'dashboard', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -37,10 +38,10 @@
                 </main>
                 </div>
             </div>
-        <script defer src="{{ asset('js/s.js') }}"></script>
-        <script defer src="{{ asset('js/bundle.js') }}"></script>
+        <script defer src="/js/s.js"></script>
+        <script defer src="/js/bundle.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
         @stack('scripts')
     </body>
 </html>

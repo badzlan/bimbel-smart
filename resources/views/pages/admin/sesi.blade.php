@@ -5,6 +5,7 @@
     @include('components.breadcrumb')
 
     <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03] mt-6">
+
         <div id="calendar" class="min-h-screen"></div>
     </div>
 
@@ -192,16 +193,115 @@
             </div>
         </div>
     </div>
-    {{--
+
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('eventModal');
+        const closeBtns = document.querySelectorAll('.modal-close-btn');
+        const addBtn = document.querySelector('.btn-add-event');
+        const updateBtn = document.querySelector('.btn-update-event');
+        const kelasSelect = document.querySelector('select');
+        const dateInput = document.querySelector('#event-start-date');
+
+        let currentEvent = null;
+
+        /* ---- SHOW MODAL ---- */
+        function openModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        /* ---- HIDE MODAL ---- */
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            resetForm();
+        }
+
+        closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+        function resetForm() {
+            kelasSelect.value = "";
+            dateInput.value = "";
+
+            document.querySelectorAll('input[name="event-level"]').forEach(r => r.checked = false);
+
+            addBtn.style.display = 'block';
+            updateBtn.style.display = 'none';
+        }
+
+        /* ---- INITIALIZE FULLCALENDAR ---- */
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+            initialView: 'dayGridMonth',
+            selectable: true,
+
+            dateClick(info) {
+                currentEvent = null;
+                addBtn.style.display = 'block';
+                updateBtn.style.display = 'none';
+
+                dateInput.value = info.dateStr;
+                openModal();
+            },
+
+            eventClick(info) {
+                currentEvent = info.event;
+
+                // Fill modal
+                kelasSelect.value = info.event.title;
+                dateInput.value = info.event.startStr;
+
+                // Set warna
+                document.querySelector(`input[value="${info.event.extendedProps.level}"]`).checked = true;
+
+                addBtn.style.display = 'none';
+                updateBtn.style.display = 'block';
+
+                openModal();
+            }
         });
+
         calendar.render();
-      });
+
+        /* ---- ADD EVENT ---- */
+        addBtn.addEventListener('click', function() {
+            const kelas = kelasSelect.value;
+            const tanggal = dateInput.value;
+            const warna = document.querySelector('input[name="event-level"]:checked')?.value;
+
+            if (!kelas || !tanggal || !warna) {
+                alert("Mohon isi semua data.");
+                return;
+            }
+
+            calendar.addEvent({
+                id: Date.now(),
+                title: kelas,
+                start: tanggal,
+                extendedProps: { level: warna }
+            });
+
+            closeModal();
+        });
+
+        /* ---- UPDATE EVENT ---- */
+        updateBtn.addEventListener('click', function() {
+            if (!currentEvent) return;
+
+            const kelas = kelasSelect.value;
+            const tanggal = dateInput.value;
+            const warna = document.querySelector('input[name="event-level"]:checked')?.value;
+
+            currentEvent.setProp('title', kelas);
+            currentEvent.setStart(tanggal);
+            currentEvent.setExtendedProp('level', warna);
+
+            closeModal();
+        });
+    });
 </script>
-@endpush --}}
+@endpush
+
 @endsection

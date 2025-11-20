@@ -14,9 +14,10 @@ class AuthController extends Controller
     }
 
     public function postSignin(Request $request) {
-        if(!$request->email && !$request->password) {
-            return back()->with('error', 'Email dan Password tidak boleh kosong!');
-        }
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
         $credentials = [
             'email' => $request->email,
@@ -33,7 +34,7 @@ class AuthController extends Controller
             }
         }
 
-        return back()->with('error', 'Email atau Password salah!');
+        return back()->with('error', 'Email atau password salah!');
     }
 
     public function signout(Request $request) {

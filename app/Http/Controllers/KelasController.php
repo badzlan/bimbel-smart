@@ -21,8 +21,11 @@ class KelasController extends Controller
 
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'ilike', '%' . $search . '%')
-                ->orWhere('school', 'ilike', '%' . $search . '%');
+                    ->orWhereHas('tutor', function ($t) use ($search) {
+                        $t->where('name', 'ilike', '%' . $search . '%');
+                    });
             });
+
         }
 
         $kelas = $query->paginate(10);

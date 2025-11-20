@@ -57,7 +57,7 @@
                             <path d="M5 10.0002H15.0006M10.0002 5V15.0006" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
-                        Tambah Kelas Baru
+                        Tambah Kelas
                     </a>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->tutor->name }} {{ $item->tutor->degree }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->tutor?->name ? $item->tutor->name . " " . $item->tutor->degree : 'Belum punya tutor' }}</p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->siswa_count }} Siswa</p>
@@ -145,11 +145,8 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspan="7" class="p-5 text-center text-gray-500 dark:text-gray-400">
-                                    Belum ada kelas.
-                                </td>
-                            </tr>
+
+
                         @endforelse
                     </tbody>
                 </table>

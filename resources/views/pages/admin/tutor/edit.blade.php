@@ -16,17 +16,22 @@
                 </div>
                 <div class="p-4 sm:p-6 dark:border-gray-800">
                     <div class="space-y-5">
-                        <div>
-                            {{-- <div class="h-20 w-20 overflow-hidden rounded-full border border-gray-200 dark:border-gray-800">
-                                <img src="{{ auth()->user()->image }}" alt="user">
-                            </div> --}}
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                                Foto Tutor
-                            </label>
-                            <input type="file" name="image" value="{{ $tutor->image }}"
-                                class="focus:border-ring-brand-300 shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400">
+                        <div class="flex justify-center mt-3">
+                            <div class="h-40 w-40 aspect-square">
+                                <img src="{{ $tutor->image }}" id="imagePreview"
+                                    class="h-full w-full rounded-full object-cover border border-gray-300 dark:border-gray-700"
+                                    onclick="document.getElementById('imageInput').click()" />
+                            </div>
                         </div>
-
+                        <div>
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                                Foto Tutor<span class="text-error-500">*</span>
+                            </label>
+                            <input type="file" name="image" id="imageInput"
+                                value="{{ $tutor->image }}"
+                                class="focus:border-ring-brand-300 shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400"
+                                accept="image/*" required>
+                        </div>
                         <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
                             <div>
                                 <label for="nama-tutor"
@@ -125,3 +130,19 @@
         </div>
     </form>
 @endsection
+
+@push('scripts')
+<script>
+    document.getElementById('imageInput').addEventListener('change', function (e) {
+        const preview = document.getElementById('imagePreview');
+        const file = this.files[0];
+
+        if (!file) {
+            preview.src = "";
+            return;
+        }
+
+        preview.src = URL.createObjectURL(file);
+    });
+</script>
+@endpush
