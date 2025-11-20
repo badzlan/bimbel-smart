@@ -72,7 +72,7 @@ class TutorController extends Controller
 
     public function edit(string $id)
     {
-        $tutor = User::where('id', $id)->first();
+        $tutor = User::findOrFail($id);
 
         return view('pages.admin.tutor.edit', [
             'title' => 'Edit Tutor',
@@ -89,7 +89,7 @@ class TutorController extends Controller
             'phone' => 'required',
         ]);
 
-        $user = User::where('id', $id)->first();
+        $user = User::findOrFail($id);
 
         $user->update([
             'name' => $request->name,
@@ -119,7 +119,7 @@ class TutorController extends Controller
 
     public function destroy(string $id)
     {
-        $tutor = User::where('id', $id)->first();
+        $tutor = User::findOrFail($id);
 
         File::delete(public_path($tutor->image));
 

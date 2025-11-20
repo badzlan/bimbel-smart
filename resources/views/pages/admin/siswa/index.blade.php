@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 @extends('layouts.main')
 
 @section('content')
@@ -119,7 +123,7 @@
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->school }}</p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->enter_date }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ Carbon::parse($item->enter_date)->translatedFormat('D, d M Y') }}</p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <div x-data="{ open: false }" class="relative flex justify-start">

@@ -7,19 +7,19 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        $query = Siswa::orderBy('id', 'desc');
+        $query = Siswa::with(['kelas'])->orderBy('id', 'desc');
 
         if ($request->search) {
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'ilike', '%' . $search . '%')
-                ->orWhere('school', 'ilike', '%' . $search . '%');
+                ->orWhere('school', 'ilike', '%' . $search . '%')
+                ->orWhereHas('kelas', function ($k) use ($search) {
+                    $k->where('name', 'ilike', '%' . $search . '%');
+                });
             });
         }
 
@@ -29,25 +29,19 @@ class SiswaController extends Controller
             'siswa' => $siswa
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pages.admin.siswa.create', [
             'title' => 'Tambah Siswa'
         ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        if (!$request->name || !$request->school || !$request->enter_date) {
-            return back()->with('error', 'Data siswa tidak boleh kosong!');
-        }
+        $request->validate([
+            'name' => 'required',
+            'school' => 'required',
+            'enter_date' => 'required'
+        ]);
 
         Siswa::create([
             'name' => $request->name,
@@ -58,21 +52,13 @@ class SiswaController extends Controller
         return redirect('/admin/siswa')->with('success', 'Berhasil menambahkan siswa!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
+        $siswa = Siswa::findOrFail($id);
+
         return view('pages.admin.siswa.edit', [
-            'title' => 'Edit Siswa'
+            'title' => 'Edit Siswa',
+            'siswa' => $siswa
         ]);
     }
 
@@ -81,14 +67,29 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'school' => 'required',
+            'enter_date' => 'required'
+        ]);
+
+        $siswa = Siswa::findOrFail($id);
+
+        $siswa->update([
+            'name' => $request->name,
+            'school' => $request->school,
+            'enter_date' => $request->enter_date
+        ]);
+
+        return redirect('/admin/siswa')->with('success', 'Berhasil mengubah siswa!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $siswa = Siswa::findOrFail($id);
+
+        $siswa->delete();
+
+        return back()->with('success', 'Berhasil menghapus siswa!');
     }
 }

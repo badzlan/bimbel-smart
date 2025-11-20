@@ -14,4 +14,9 @@ class Siswa extends Model
         'school',
         'enter_date',
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'class_id', 'id');
+    }
 }
