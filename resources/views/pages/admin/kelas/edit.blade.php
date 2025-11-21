@@ -43,7 +43,7 @@
                                             </option>
                                             @foreach ($tutor as $item)
                                             <option value="{{ $item->id }}"
-                                                {{ $item->class_id == $kelas->id ? 'selected' : '' }}>
+                                                {{ $kelas->tutor_id == $item->id ? 'selected' : '' }}>
                                                 {{ $item->name }} {{ $item->degree }}
                                             </option>
                                             @endforeach

@@ -91,12 +91,6 @@
                             <th
                                 class="cursor-pointer px-5 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400">
                                 <div class="flex items-center gap-1">
-                                    Kelas
-                                </div>
-                            </th>
-                            <th
-                                class="cursor-pointer px-5 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400">
-                                <div class="flex items-center gap-1">
                                     Email
                                 </div>
                             </th>
@@ -124,15 +118,6 @@
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->degree }}</p>
-                                </td>
-                                <td class="px-5 py-4 whitespace-nowrap">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                                        @if ($item->class_id)
-                                            {{ $item->kelas->name }}
-                                        @else
-                                            Belum punya kelas
-                                        @endif
-                                    </p>
                                 </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $item->email }}</p>

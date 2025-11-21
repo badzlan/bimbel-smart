@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SesiController;
@@ -29,6 +30,12 @@ Route::get('/', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/sign-in', [AuthController::class, 'getSignin'])->name('signin');
     Route::post('/sign-in', [AuthController::class, 'postSignin']);
+
+    Route::get('/forgot-password', function () {
+        return view('pages.auth.forgot-password', [
+            'title' => 'Lupa Password'
+        ]);
+    });
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -47,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/tutor', TutorController::class);
         Route::resource('/siswa', SiswaController::class);
         Route::resource('/kelas', KelasController::class);
-        Route::resource('/sesi', SesiController::class);
+        Route::resource('/jadwal', JadwalController::class);
 
         Route::get('/pertemuan', function () {
             return view('pages.admin.absensi.pertemuan', [

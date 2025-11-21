@@ -23,8 +23,8 @@ class User extends Authenticatable
         'degree',
         'email',
         'phone',
-        'password',
         'role',
+        'password',
     ];
 
     /**
@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'class_id', 'id');
+        return $this->belongsTo(Kelas::class, 'id', 'tutor_id');
     }
 }

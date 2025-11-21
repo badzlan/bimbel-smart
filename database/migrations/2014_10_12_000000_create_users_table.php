@@ -19,12 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone');
-            $table->string('role');
+            $table->string('role')->default('tutor');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreignId('class_id')->nullable()->constrained('kelas')->onUpdate('cascade')->nullOnDelete();
         });
     }
 

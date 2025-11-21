@@ -38,7 +38,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                             <h1 class="text-3xl font-bold text-white/90">Bimbel SMART</h1>
                         </a>
                         <p class="text-center text-gray-400 dark:text-white/60">
-                            Aplikasi Absensi dan Penghitung Fee Tutor untuk Bimbel SMART
+                            Sistem Absensi dan Penghitung Fee Tutor untuk Bimbel SMART
                         </p>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ class TutorController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::with(['kelas'])->where('role', 'tutor')->orderBy('id', 'desc');
+        $query = User::where('role', 'tutor')->orderBy('id', 'desc');
 
         if ($request->search) {
             $search = $request->search;
@@ -19,10 +19,7 @@ class TutorController extends Controller
                 $q->where('name', 'ilike', '%' . $search . '%')
                     ->orWhere('degree', 'ilike', '%' . $search . '%')
                     ->orWhere('email', 'ilike', '%' . $search . '%')
-                    ->orWhere('phone', 'ilike', '%' . $search . '%')
-                    ->orWhereHas('kelas', function ($k) use ($search) {
-                        $k->where('name', 'ilike', '%' . $search . '%');
-                    });
+                    ->orWhere('phone', 'ilike', '%' . $search . '%');
             });
         }
 
@@ -99,7 +96,10 @@ class TutorController extends Controller
         ]);
 
         if($request->hasFile('image')) {
-            File::delete(public_path($user->image));
+            if($user->image != '/images/default.png') {
+                File::delete(public_path($user->image));
+            }
+
             $filename = 'profile-' . $user->id . '.' . $request->image->getClientOriginalExtension();
             $request->image->move(public_path('images/profile'), $filename);
 

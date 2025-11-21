@@ -11,11 +11,12 @@ class Kelas extends Model
 
     protected $fillable = [
         'name',
+        'tutor_id'
     ];
 
     public function tutor()
     {
-        return $this->hasOne(User::class, 'class_id', 'id')->where('role', 'tutor');
+        return $this->hasOne(User::class, 'id', 'tutor_id')->where('role', 'tutor');
     }
 
     public function siswa()

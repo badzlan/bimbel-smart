@@ -32,7 +32,7 @@ class KelasController extends Controller
 
     public function create()
     {
-        $tutor = User::where('role', 'tutor')->whereNull('class_id')->orderBy('id', 'desc')->get();
+        $tutor = User::where('role', 'tutor')->orderBy('id', 'desc')->get();
         $siswa = Siswa::whereNull('class_id')->orderBy('id', 'desc')->get();
 
         return view('pages.admin.kelas.create', [
@@ -52,10 +52,7 @@ class KelasController extends Controller
 
         $kelas = Kelas::create([
             'name' => $request->name,
-        ]);
-
-        User::where('id', $request->tutor)->update([
-            'class_id' => $kelas->id,
+            'tutor_id' => $request->tutor
         ]);
 
         foreach ($request->siswa as $siswa) {
@@ -71,9 +68,7 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
 
-        $tutor = User::where('role', 'tutor')->where(function ($q) use ($kelas) {
-                    $q->whereNull('class_id')->orWhere('class_id', $kelas->id);
-                })->orderBy('id', 'desc')->get();
+        $tutor = User::where('role', 'tutor')->orderBy('id', 'desc')->get();
 
         $siswa = Siswa::where(function ($q) use ($id) {
                     $q->whereNull('class_id')->orWhere('class_id', $id);
@@ -89,8 +84,6 @@ class KelasController extends Controller
 
     public function update(Request $request, string $id)
     {
-        // $kelas = Kelas::findOrFail($id);
-        // dd($kelas->tutor);
         $request->validate([
             'name' => 'required',
             'tutor' => 'required',
@@ -101,17 +94,7 @@ class KelasController extends Controller
 
         $kelas->update([
             'name' => $request->name,
-        ]);
-
-        $currentTutor = $kelas->tutor;
-        $newTutorId = $request->tutor;
-
-        if ($currentTutor && $currentTutor->id != $newTutorId) {
-            User::where('id', $currentTutor->id)->update(['class_id' => null]);
-        }
-
-        User::where('id', $newTutorId)->update([
-            'class_id' => $kelas->id,
+            'tutor_id' => $request->tutor
         ]);
 
         $selectedStudents = $request->siswa;
