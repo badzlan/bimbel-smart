@@ -45,7 +45,7 @@
     @include('components.breadcrumb')
 
     <div class="mt-6 overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
-        <div
+        {{-- <div
             class="grid grid-cols-1 gap-5 border-b border-gray-200 px-5 py-4 sm:flex-row lg:items-center dark:border-gray-800">
             <div class="relative">
                 <div class="col-span-full">
@@ -146,7 +146,98 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+        <div class="border-b border-gray-200 px-5 py-4 dark:border-gray-800">
+            <div class="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:items-end">
+
+                <div class="lg:col-span-3">
+                    <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent">
+                        <select
+                            class="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                            :class="isOptionSelected && 'text-gray-800 dark:text-white/90'"
+                            @change="isOptionSelected = true">
+                            <option value="" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400" selected>
+                                Pilih Tahun
+                            </option>
+                            <option value="2025" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                2025
+                            </option>
+                            <option value="2024" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                2024
+                            </option>
+                        </select>
+                        <span class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-700 dark:text-gray-400">
+                            <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.79175 7.396L10.0001 12.6043L15.2084 7.396" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent">
+                        <select
+                            class="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                            :class="isOptionSelected && 'text-gray-800 dark:text-white/90'"
+                            @change="isOptionSelected = true">
+                            <option value="" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400" selected>
+                                Pilih Bulan
+                            </option>
+                            <option value="Oktober" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                Oktober
+                            </option>
+                            <option value="September" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                September
+                            </option>
+                        </select>
+                        <span class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-700 dark:text-gray-400">
+                            <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.79175 7.396L10.0001 12.6043L15.2084 7.396" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent">
+                        <select
+                            class="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                            :class="isOptionSelected && 'text-gray-800 dark:text-white/90'"
+                            @change="isOptionSelected = true">
+                            <option value="" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400" selected>
+                                Pilih Kelas
+                            </option>
+                            <option value="Kelas 9A" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                Kelas 9A
+                            </option>
+                            <option value="Kelas 6B" class="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                                Kelas 6B
+                            </option>
+                        </select>
+                        <span class="pointer-events-none absolute top-1/2 right-4 z-30 -translate-y-1/2 text-gray-700 dark:text-gray-400">
+                            <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.79175 7.396L10.0001 12.6043L15.2084 7.396" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block lg:col-span-1"></div>
+
+                <div class="lg:col-span-2">
+                    <button class="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-4 text-sm font-medium text-white transition hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/50 dark:bg-brand-500 dark:hover:bg-brand-600">
+                        <svg class="fill-current" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.16667 3.33333C5.94502 3.33333 3.33334 5.94502 3.33334 9.16667C3.33334 12.3883 5.94502 15 9.16667 15C12.3883 15 15 12.3883 15 9.16667C15 5.94502 12.3883 3.33333 9.16667 3.33333ZM1.66667 9.16667C1.66667 5.02454 5.02454 1.66667 9.16667 1.66667C13.3088 1.66667 16.6667 5.02454 16.6667 9.16667C16.6667 13.3088 13.3088 16.6667 9.16667 16.6667C5.02454 16.6667 1.66667 13.3088 1.66667 9.16667Z" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2857 13.2857C13.6112 12.9603 14.1388 12.9603 14.4643 13.2857L18.0893 16.9107C18.4147 17.2362 18.4147 17.7638 18.0893 18.0893C17.7638 18.4147 17.2362 18.4147 16.9107 18.0893L13.2857 14.4643C12.9603 14.1388 12.9603 13.6112 13.2857 13.2857Z" />
+                        </svg>
+                        Cari
+                    </button>
+                </div>
+
+            </div>
         </div>
+
         <div class="custom-scrollbar overflow-x-auto">
             <div class="p-4 space-y-8 border-t border-gray-200 mt-7 dark:border-gray-800 sm:mt-0 xl:p-6">
                 <div class="flex flex-col gap-4 swim-lane">
