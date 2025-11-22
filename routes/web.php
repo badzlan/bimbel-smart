@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KelasController;
@@ -54,19 +55,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/tutor', TutorController::class);
         Route::resource('/siswa', SiswaController::class);
         Route::resource('/kelas', KelasController::class);
+
         Route::resource('/jadwal', JadwalController::class);
-
-        Route::get('/pertemuan', function () {
-            return view('pages.admin.absensi.pertemuan', [
-                'title' => 'Rekap Per Pertemuan'
-            ]);
-        });
-
-        Route::get('/pertemuan/{id}', function ($id) {
-            return view('pages.admin.absensi.detail', [
-                'title' => 'Detail Rekap Pertemuan '.  $id
-            ]);
-        });
+        Route::get('/pertemuan', [AbsensiController::class, 'getAbsensi']);
+        Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailAbsensi']);
+        Route::post('/pertemuan/{id}', [AbsensiController::class, 'postAbsensi']);
 
         Route::get('/bulan', function () {
             return view('pages.admin.absensi.bulan', [

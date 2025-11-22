@@ -24,7 +24,7 @@ class JadwalController extends Controller
 
         $kelas = Kelas::all();
 
-        return view('pages.admin.jadwal', [
+        return view('pages.admin.absensi.jadwal', [
             'title' => 'Jadwal Pertemuan',
             'jadwal' => $jadwal,
             'kelas' => $kelas

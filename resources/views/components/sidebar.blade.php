@@ -89,7 +89,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/pertemuan" class="menu-item group {{ $title === 'Rekap Per Pertemuan' || $title === 'Detail Rekap Pertemuan/**' ? 'menu-item-active' : 'menu-item-inactive' }}">
+                        <a href="/admin/pertemuan" class="menu-item group {{ $title === 'Rekap Per Pertemuan' || $title === 'Detail Rekap Pertemuan' ? 'menu-item-active' : 'menu-item-inactive' }}">
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.32031 4.75C3.62996 4.75 3.07031 5.30964 3.07031 6C3.07031 6.69036 3.62996 7.25 4.32031 7.25H4.33031C5.02067 7.25 5.58031 6.69036 5.58031 6C5.58031 5.30964 5.02067 4.75 4.33031 4.75H4.32031Z" fill="#323544"/>
                                 <path d="M8.31055 5.25C7.89633 5.25 7.56055 5.58579 7.56055 6C7.56055 6.41421 7.89633 6.75 8.31055 6.75L20.3105 6.75C20.7248 6.75 21.0605 6.41421 21.0605 6C21.0605 5.58579 20.7248 5.25 20.3105 5.25H8.31055Z" fill="#323544"/>
