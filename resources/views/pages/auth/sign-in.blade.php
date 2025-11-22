@@ -46,12 +46,12 @@
                             </div>
                         </div>
                     </form>
-                    <div class="mt-5">
+                    {{-- <div class="mt-5">
                         <p class="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
                             Lupa password anda?
                             <a href="/forgot-password" class="text-brand-500 hover:text-brand-600 dark:text-brand-400">Klik disini</a>
                         </p>
-                    </div>
+                    </div> --}}
                     {{-- <div class="relative py-3 sm:py-5">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-gray-200 dark:border-gray-800"></div>

@@ -21,7 +21,11 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 
     <div class="flex h-screen overflow-hidden">
 
+        @if (auth()->user()->role == 'admin')
         @include('components.sidebar')
+        @else
+        @include('components.sidebar-tutor')
+        @endif
 
         <div class="relative flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
             <div :class="sidebarToggle ? 'block xl:hidden' : 'hidden'"
