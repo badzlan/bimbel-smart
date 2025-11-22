@@ -125,4 +125,36 @@ class KelasController extends Controller
 
         return back()->with('success', 'Berhasil menghapus kelas!');
     }
+
+    public function getTutorKelas(Request $request)
+    {
+        $query = Kelas::with(['tutor'])
+            ->where('tutor_id', auth()->user()->id)
+            ->withCount('siswa')
+            ->orderBy('id', 'desc');
+
+        if ($request->search) {
+            $search = $request->search;
+
+            $query->where('name', 'ilike', '%' . $search . '%');
+        }
+
+        $kelas = $query->paginate(10);
+        return view('pages.tutor.kelas.index', [
+            'title' => 'Kelas Saya',
+            'kelas' => $kelas,
+        ]);
+    }
+
+    public function getTutorKelasDetail(string $id)
+    {
+        $kelas = Kelas::findOrFail($id);
+        $siswa = Siswa::where('class_id', $kelas->id)->orderBy('id', 'desc')->get();
+
+        return view('pages.tutor.kelas.detail', [
+            'title' => 'Detail Kelas',
+            'kelas' => $kelas,
+            'siswa' => $siswa,
+        ]);
+    }
 }

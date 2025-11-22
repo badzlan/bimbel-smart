@@ -63,12 +63,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('/tutor')->group(function () {
         Route::get('/', [DashboardController::class, 'tutorDashboard']);
-
-        Route::get('/kelas', function () {
-            return view('pages.tutor.kelas.index', [
-                'title' => 'Kelas Saya'
-            ]);
-        });
+        Route::get('/kelas', [KelasController::class, 'getTutorKelas']);
+        Route::get('/kelas/{id}', [KelasController::class, 'getTutorKelasDetail']);
 
         Route::get('/jadwal', function () {
             return view('pages.tutor.absensi.jadwal', [

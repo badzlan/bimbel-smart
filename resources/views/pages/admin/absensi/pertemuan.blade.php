@@ -143,7 +143,7 @@
                     @empty
                         <div>
                             <div colspan="7" class="p-5 text-center text-gray-500 dark:text-gray-400">
-                                Pilih tahun, bulan, dan pertemuan.
+                                Pilih tahun, bulan, dan kelas.
                             </div>
                         </div>
                     @endforelse
