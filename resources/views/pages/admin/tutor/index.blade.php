@@ -63,6 +63,8 @@
                 <table class="w-full table-auto">
                     <thead>
                         <tr class="border-b border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+                            <th class="w-14 px-5 py-4 text-left">
+                            </th>
                             <th
                                 class="cursor-pointer px-5 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400">
                                 <div class="flex items-center gap-1">
@@ -95,6 +97,8 @@
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
                         @forelse ($tutor as $item)
                             <tr class="transition hover:bg-gray-50 dark:hover:bg-gray-900">
+                                <td class="w-14 px-5 py-4 whitespace-nowrap">
+                                </td>
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <div class="flex items-center gap-3">
                                         <img src="{{ asset($item->image) }}" class="h-10 w-10 rounded-full object-cover"
