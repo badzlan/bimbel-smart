@@ -43,15 +43,10 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::resource('/kelas', KelasController::class);
 
         Route::resource('/jadwal', JadwalController::class);
-        Route::get('/pertemuan', [AbsensiController::class, 'getAbsensi']);
-        Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailAbsensi']);
-        Route::post('/pertemuan/{id}', [AbsensiController::class, 'postAbsensi']);
-
-        Route::get('/bulan', function () {
-            return view('pages.admin.absensi.bulan', [
-                'title' => 'Rekap Per Bulan'
-            ]);
-        });
+        Route::get('/pertemuan', [AbsensiController::class, 'getPertemuan']);
+        Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailPertemuan']);
+        Route::post('/pertemuan/{id}', [AbsensiController::class, 'postPertemuan']);
+        Route::get('/bulan', [AbsensiController::class, 'getBulan']);
     });
 });
 

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
+use App\Models\Kelas;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class TutorController extends Controller
@@ -70,10 +73,51 @@ class TutorController extends Controller
     public function edit(string $id)
     {
         $tutor = User::findOrFail($id);
+        $kelas = Kelas::where('tutor_id', $id)->get();
+
+        $absensi = Absensi::select(
+                'class_id',
+                DB::raw("SUM(CASE WHEN attendance = 'H' THEN 1 ELSE 0 END) as hadir"),
+                DB::raw("SUM(CASE WHEN attendance = 'S' THEN 1 ELSE 0 END) as sakit"),
+                DB::raw("SUM(CASE WHEN attendance = 'I' THEN 1 ELSE 0 END) as izin"),
+                DB::raw("SUM(CASE WHEN attendance = 'A' THEN 1 ELSE 0 END) as alpa")
+            )
+            ->whereIn('class_id', $kelas->pluck('id'))
+            ->groupBy('class_id')
+            ->get()
+            ->keyBy('class_id'); // keyBy supaya gampang akses per kelas
+
+        $totalTutor = [
+            'hadir' => 0,
+            'sakit' => 0,
+            'izin' => 0,
+            'alpa' => 0,
+            'fee' => 0,
+        ];
+
+        foreach ($kelas as $kelasItem) {
+            $data = $absensi->get($kelasItem->id);
+            $kelasItem->hadir = $data->hadir ?? 0;
+            $kelasItem->sakit = $data->sakit ?? 0;
+            $kelasItem->izin  = $data->izin  ?? 0;
+            $kelasItem->alpa  = $data->alpa  ?? 0;
+
+            // Hitung fee
+            $kelasItem->fee = ($kelasItem->hadir * 50000) + (($kelasItem->sakit + $kelasItem->izin) * 25000);
+
+            // Tambahkan ke total tutor
+            $totalTutor['hadir'] += $kelasItem->hadir;
+            $totalTutor['sakit'] += $kelasItem->sakit;
+            $totalTutor['izin']  += $kelasItem->izin;
+            $totalTutor['alpa']  += $kelasItem->alpa;
+            $totalTutor['fee']   += $kelasItem->fee;
+        }
 
         return view('pages.admin.tutor.edit', [
             'title' => 'Edit Tutor',
-            'tutor' => $tutor
+            'tutor' => $tutor,
+            'kelas' => $kelas,
+            'total_tutor' => $totalTutor,
         ]);
     }
 

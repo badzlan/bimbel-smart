@@ -20,6 +20,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        abort(403, 'Anda tidak memiliki akses');
+        return redirect('/sign-in')->with('error', 'Anda tidak memiliki akses.');
     }
 }

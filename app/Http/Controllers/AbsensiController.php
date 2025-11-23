@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AbsensiController extends Controller
 {
 
-    public function getAbsensi(Request $request)
+    public function getPertemuan(Request $request)
     {
 
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
@@ -25,7 +25,7 @@ class AbsensiController extends Controller
         ]);
     }
 
-    public function getDetailAbsensi(string $id, Request $request)
+    public function getDetailPertemuan(string $id, Request $request)
     {
         $pertemuan = Jadwal::findOrFail($id);
         $siswa = Siswa::where('class_id', $pertemuan->class_id)->get();
@@ -44,7 +44,7 @@ class AbsensiController extends Controller
         ]);
     }
 
-    public function postAbsensi(string $id, Request $request)
+    public function postPertemuan(string $id, Request $request)
     {
         $pertemuan = Jadwal::findOrFail($id);
         $attendance = $request->attendance;
@@ -67,4 +67,25 @@ class AbsensiController extends Controller
         return back()->with('success', 'Absensi berhasil disimpan!');
     }
 
+    public function getBulan(Request $request)
+    {
+        $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
+        $kelas = Kelas::all();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
+        $siswa = Siswa::where('class_id', $request->kelas)->get();
+        $absensi = Absensi::whereIn('siswa_id', $siswa->pluck('id'))->whereIn('pertemuan_id', $pertemuan->pluck('id'))->get();
+
+        $absensiLookup = [];
+        foreach ($absensi as $a) {
+            $absensiLookup[$a->siswa_id][$a->pertemuan_id] = $a->attendance;
+        }
+
+        return view('pages.admin.absensi.bulan', [
+            'title' => 'Rekap Per Bulan',
+            'pertemuan' => !$isComplete ? [] : $pertemuan,
+            'kelas' => $kelas,
+            'siswa' => !$isComplete ? [] : $siswa,
+            'absensi' => $absensiLookup
+        ]);
+    }
 }

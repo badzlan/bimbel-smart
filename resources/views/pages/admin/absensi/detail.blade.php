@@ -60,7 +60,7 @@
                                 <th class="bg-warning-50 p-4 text-center text-xs font-medium text-warning-700 whitespace-nowrap dark:bg-warning-500/10 dark:text-warning-400">
                                     Sakit
                                 </th>
-                                <th class="bg-blue-light-50 p-4 text-center text-xs font-medium text-primary-700 whitespace-nowrap dark:bg-blue-500/10 dark:text-blue-400">
+                                <th class="bg-blue-light-50 p-4 text-center text-xs font-medium text-blue-light-500 whitespace-nowrap dark:bg-blue-500/10 dark:text-blue-400">
                                     Izin
                                 </th>
                                 <th class="bg-red-50 p-4 text-center text-xs font-medium text-red-700 whitespace-nowrap dark:bg-red-500/10 dark:text-red-400">
@@ -85,7 +85,7 @@
                                         <input {{ isset($absensi[$item->id]) && $absensi[$item->id]->attendance == 'S' ? 'checked' : '' }} type="radio" name="attendance[{{ $item->id }}]" value="S" class="h-4 w-4 rounded-full border-gray-300 text-warning-600 focus:ring-warning-500">
                                     </td>
                                     <td class="bg-blue-light-50 p-4 text-center whitespace-nowrap dark:bg-blue-500/10">
-                                        <input {{ isset($absensi[$item->id]) && $absensi[$item->id]->attendance == 'I' ? 'checked' : '' }} type="radio" name="attendance[{{ $item->id }}]" value="I" class="h-4 w-4 rounded-full border-gray-300 text-blue-light-600 focus:ring-blue-500">
+                                        <input {{ isset($absensi[$item->id]) && $absensi[$item->id]->attendance == 'I' ? 'checked' : '' }} type="radio" name="attendance[{{ $item->id }}]" value="I" class="h-4 w-4 rounded-full border-gray-300 text-blue-light-500 focus:ring-blue-500">
                                     </td>
                                     <td class="bg-red-50 p-4 text-center whitespace-nowrap dark:bg-red-500/10">
                                         <input {{ isset($absensi[$item->id]) && $absensi[$item->id]->attendance == 'A' ? 'checked' : '' }} type="radio" name="attendance[{{ $item->id }}]" value="A" class="h-4 w-4 rounded-full border-gray-300 text-red-600 focus:ring-red-500">
