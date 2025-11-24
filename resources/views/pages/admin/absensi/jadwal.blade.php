@@ -45,7 +45,7 @@
                                     Nama Jadwal
                                 </label>
                                 <input id="title" name="name" type="text" placeholder="Masukkan nama jadwal, misal : Pertemuan 1"
-                                    class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30">
+                                    class="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30" required>
                             </div>
                         </div>
 
@@ -95,22 +95,22 @@
                 <div class="flex items-center gap-3 mt-6 modal-footer sm:justify-end">
                     <button type="button" onclick="closeModal()"
                         class="btn bg-danger-subtle text-danger flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03]">
-                        Close
+                        Kembali
                     </button>
 
                     <button type="button" id="btnDeleteEvent"
                         class="hidden btn bg-red-500 hover:bg-red-600 flex w-full justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-white sm:w-auto">
-                        Delete
+                        Hapus Jadwal
                     </button>
 
                     <button type="submit" id="btnUpdateEvent"
                         class="hidden btn bg-brand-500 hover:bg-brand-600 flex w-full justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-white sm:w-auto">
-                        Update Changes
+                        Update Jadwal
                     </button>
 
                     <button type="submit" id="btnAddEvent"
                         class="hidden btn bg-brand-500 hover:bg-brand-600 flex w-full justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-white sm:w-auto">
-                        Add Event
+                        Tambah Jadwal
                     </button>
                 </div>
             </form>
@@ -190,7 +190,6 @@
                         let updateUrl = `${BASE_URL}/${info.event.id}`;
                         mainForm.action = updateUrl;
                         formMethod.value = "PUT";
-                        console.log(info.event.extendedProps);
 
                         deleteForm.action = updateUrl;
                         eventTitleInput.value = info.event.extendedProps.name;

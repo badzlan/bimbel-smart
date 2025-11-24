@@ -33,40 +33,34 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/forgot-password', [AuthController::class, 'getForgotPassword']);
 });
 
-Route::middleware(['auth.admin'])->group(function () {
-    Route::prefix('/admin')->group(function () {
-        Route::get('/', [DashboardController::class, 'adminDashboard']);
-        Route::get('/fee', [DashboardController::class, 'feeAdmin']);
-
-        Route::resource('/tutor', TutorController::class);
-        Route::resource('/siswa', SiswaController::class);
-        Route::resource('/kelas', KelasController::class);
-
-        Route::resource('/jadwal', JadwalController::class);
-        Route::get('/pertemuan', [AbsensiController::class, 'getPertemuan']);
-        Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailPertemuan']);
-        Route::post('/pertemuan/{id}', [AbsensiController::class, 'postPertemuan']);
-        Route::get('/bulan', [AbsensiController::class, 'getBulan']);
-        Route::post('/bulan', [AbsensiController::class, 'postBulan']);
-    });
-});
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'getProfile']);
     Route::put('/profile', [ProfileController::class, 'putProfile']);
 
     Route::get('/signout', [AuthController::class, 'signout']);
+});
 
-    Route::prefix('/tutor')->group(function () {
-        Route::get('/', [DashboardController::class, 'tutorDashboard']);
-        Route::get('/kelas', [KelasController::class, 'getTutorKelas']);
-        Route::get('/kelas/{id}', [KelasController::class, 'getTutorKelasDetail']);
+Route::prefix('/admin')->middleware(['auth.admin'])->group(function () {
+    Route::get('/', [DashboardController::class, 'adminDashboard']);
+    Route::get('/fee', [DashboardController::class, 'feeAdmin']);
 
-        Route::get('/jadwal', function () {
-            return view('pages.tutor.absensi.jadwal', [
-                'title' => 'Jadwal Mengajar'
-            ]);
-        });
+    Route::resource('/tutor', TutorController::class);
+    Route::resource('/siswa', SiswaController::class);
+    Route::resource('/kelas', KelasController::class);
 
-    });
+    Route::resource('/jadwal', JadwalController::class);
+    Route::get('/pertemuan', [AbsensiController::class, 'getPertemuan']);
+    Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailPertemuan']);
+    Route::post('/pertemuan/{id}', [AbsensiController::class, 'postPertemuan']);
+    Route::get('/bulan', [AbsensiController::class, 'getBulan']);
+    Route::post('/bulan', [AbsensiController::class, 'postBulan']);
+});
+
+Route::prefix('/tutor')->middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'tutorDashboard']);
+
+    Route::get('/kelas', [KelasController::class, 'getTutorKelas']);
+    Route::get('/kelas/{id}', [KelasController::class, 'getTutorKelasDetail']);
+
+    Route::get('/jadwal', [JadwalController::class, 'getTutorJadwal']);
 });

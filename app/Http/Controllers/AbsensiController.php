@@ -16,7 +16,7 @@ class AbsensiController extends Controller
 
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
         $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
-        $kelas = Kelas::all();
+        $kelas = Kelas::orderBy('id', 'desc')->get();
 
         return view('pages.admin.absensi.pertemuan', [
             'title' => 'Rekap Per Pertemuan',
@@ -70,7 +70,7 @@ class AbsensiController extends Controller
     public function getBulan(Request $request)
     {
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
-        $kelas = Kelas::all();
+        $kelas = Kelas::orderBy('id', 'desc')->get();
         $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
         $siswa = Siswa::where('class_id', $request->kelas)->get();
         $absensi = Absensi::whereIn('siswa_id', $siswa->pluck('id'))->whereIn('pertemuan_id', $pertemuan->pluck('id'))->get();
@@ -128,5 +128,4 @@ class AbsensiController extends Controller
 
         return back()->with('success', 'Absensi berhasil disimpan!');
     }
-
 }

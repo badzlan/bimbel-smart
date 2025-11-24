@@ -22,7 +22,7 @@ class JadwalController extends Controller
             ];
         });
 
-        $kelas = Kelas::all();
+        $kelas = Kelas::orderBy('id', 'desc')->get();
 
         return view('pages.admin.absensi.jadwal', [
             'title' => 'Jadwal Pertemuan',
@@ -73,5 +73,32 @@ class JadwalController extends Controller
         $jadwal->delete();
 
         return redirect('/admin/jadwal')->with('success', 'Berhasil menghapus jadwal!');
+    }
+
+    public function getTutorJadwal()
+    {
+        $userId = auth()->user()->id;
+
+        $jadwal = Jadwal::with('kelas')->whereHas('kelas', function ($q) use ($userId) {
+            $q->where('tutor_id', $userId);
+        })->get()->map(function ($item) {
+            return [
+                'id'    => $item->id,
+                'title' => $item->name . ' | ' . ($item->kelas->name ?? ''),
+                'start' => $item->date,
+                'extendedProps' => [
+                    'name'  => $item->name,
+                    'class_id' => $item->class_id
+                ]
+            ];
+        });
+
+        $kelas = Kelas::orderBy('id', 'desc')->get();
+
+        return view('pages.tutor.absensi.jadwal', [
+            'title' => 'Jadwal Mengajar',
+            'jadwal' => $jadwal,
+            'kelas' => $kelas
+        ]);
     }
 }
