@@ -88,4 +88,45 @@ class AbsensiController extends Controller
             'absensi' => $absensiLookup
         ]);
     }
+
+    public function postBulan(Request $request)
+    {
+        $request->validate([
+            'attendance' => 'array'
+        ]);
+
+        $attendance = $request->attendance;
+
+        if (!$attendance) {
+            return back()->with('error', 'Tidak ada data absensi yang dikirimkan!');
+        }
+
+        foreach ($attendance as $siswa_id => $perPertemuan) {
+            foreach ($perPertemuan as $pertemuan_id => $status) {
+                if ($status === null || $status === '') {
+                    Absensi::where('siswa_id', $siswa_id)
+                        ->where('pertemuan_id', $pertemuan_id)
+                        ->delete();
+                    continue;
+                }
+
+                $pertemuan = Jadwal::find($pertemuan_id);
+                if (!$pertemuan) continue;
+                Absensi::updateOrCreate(
+                    [
+                        'siswa_id'      => $siswa_id,
+                        'class_id'      => $pertemuan->class_id,
+                        'pertemuan_id'  => $pertemuan->id,
+                        'tutor_id'      => $pertemuan->kelas->tutor_id
+                    ],
+                    [
+                        'attendance' => $status
+                    ]
+                );
+            }
+        }
+
+        return back()->with('success', 'Absensi berhasil disimpan!');
+    }
+
 }

@@ -166,7 +166,7 @@
                         right: ''
                     },
                     selectable: true,
-                    editable: true,
+                    editable: false,
                     events: @json($jadwal ?? []),
 
                     dateClick: function(info) {

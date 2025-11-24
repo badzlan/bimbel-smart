@@ -47,6 +47,7 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailPertemuan']);
         Route::post('/pertemuan/{id}', [AbsensiController::class, 'postPertemuan']);
         Route::get('/bulan', [AbsensiController::class, 'getBulan']);
+        Route::post('/bulan', [AbsensiController::class, 'postBulan']);
     });
 });
 
