@@ -21,9 +21,13 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 
     <div class="flex h-screen overflow-hidden">
 
-        @if (request()->is('admin') || request()->is('admin/*'))
-            @include('components.sidebar')
-        @elseif (request()->is('tutor') || request()->is('tutor/*'))
+        @if (auth()->user()->role == 'admin')
+            @if (request()->is('tutor') || request()->is('tutor/*'))
+                @include('components.sidebar-tutor')
+            @else
+                @include('components.sidebar')
+            @endif
+        @else
             @include('components.sidebar-tutor')
         @endif
 

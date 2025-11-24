@@ -28,12 +28,7 @@ class AbsensiController extends Controller
     {
         $pertemuan = Jadwal::findOrFail($id);
         $siswa = Siswa::where('class_id', $pertemuan->class_id)->get();
-
-        $absensi = Absensi::where('class_id', $pertemuan->class_id)
-            ->where('pertemuan_id', $id)
-            ->get()
-            ->keyBy('siswa_id');
-
+        $absensi = Absensi::where('class_id', $pertemuan->class_id)->where('pertemuan_id', $id)->get()->keyBy('siswa_id');
 
         return view('pages.admin.absensi.detail', [
             'title' => 'Detail Rekap Pertemuan',
@@ -49,7 +44,6 @@ class AbsensiController extends Controller
         $attendance = $request->attendance;
 
         foreach ($attendance as $siswa_id => $value) {
-
             Absensi::updateOrCreate(
                 [
                     'siswa_id' => $siswa_id,
@@ -95,7 +89,6 @@ class AbsensiController extends Controller
         ]);
 
         $attendance = $request->attendance;
-
         if (!$attendance) {
             return back()->with('error', 'Tidak ada data absensi yang dikirimkan!');
         }
@@ -145,12 +138,7 @@ class AbsensiController extends Controller
     {
         $pertemuan = Jadwal::findOrFail($id);
         $siswa = Siswa::where('class_id', $pertemuan->class_id)->get();
-
-        $absensi = Absensi::where('class_id', $pertemuan->class_id)
-            ->where('pertemuan_id', $id)
-            ->get()
-            ->keyBy('siswa_id');
-
+        $absensi = Absensi::where('class_id', $pertemuan->class_id)->where('pertemuan_id', $id)->get() ->keyBy('siswa_id');
 
         return view('pages.tutor.absensi.detail', [
             'title' => 'Detail Absensi',
@@ -166,7 +154,6 @@ class AbsensiController extends Controller
         $attendance = $request->attendance;
 
         foreach ($attendance as $siswa_id => $value) {
-
             Absensi::updateOrCreate(
                 [
                     'siswa_id' => $siswa_id,
@@ -178,6 +165,67 @@ class AbsensiController extends Controller
                     'attendance' => $value
                 ]
             );
+        }
+
+        return back()->with('success', 'Absensi berhasil disimpan!');
+    }
+
+    public function getBulanTutor(Request $request)
+    {
+        $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
+        $kelas = Kelas::where('tutor_id', auth()->user()->id)->orderBy('id', 'desc')->get();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
+        $siswa = Siswa::where('class_id', $request->kelas)->get();
+        $absensi = Absensi::whereIn('siswa_id', $siswa->pluck('id'))->whereIn('pertemuan_id', $pertemuan->pluck('id'))->get();
+
+        $absensiLookup = [];
+        foreach ($absensi as $a) {
+            $absensiLookup[$a->siswa_id][$a->pertemuan_id] = $a->attendance;
+        }
+
+        return view('pages.tutor.absensi.bulan', [
+            'title' => 'Absen Per Bulan',
+            'pertemuan' => !$isComplete ? [] : $pertemuan,
+            'kelas' => $kelas,
+            'siswa' => !$isComplete ? [] : $siswa,
+            'absensi' => $absensiLookup
+        ]);
+    }
+
+    public function postBulanTutor(Request $request)
+    {
+        $request->validate([
+            'attendance' => 'array'
+        ]);
+
+        $attendance = $request->attendance;
+        if (!$attendance) {
+            return back()->with('error', 'Tidak ada data absensi yang dikirimkan!');
+        }
+
+        foreach ($attendance as $siswa_id => $perPertemuan) {
+            foreach ($perPertemuan as $pertemuan_id => $status) {
+                if ($status === null || $status === '') {
+                    Absensi::where('siswa_id', $siswa_id)
+                        ->where('pertemuan_id', $pertemuan_id)
+                        ->delete();
+                    continue;
+                }
+
+                $pertemuan = Jadwal::find($pertemuan_id);
+                if (!$pertemuan) continue;
+                Absensi::updateOrCreate(
+                    [
+                        'siswa_id'      => $siswa_id,
+                        'class_id'      => $pertemuan->class_id,
+                        'pertemuan_id'  => $pertemuan->id,
+                        'tutor_id'      => $pertemuan->kelas->tutor_id
+                    ],
+                    [
+                        'attendance' => $status
+                    ]
+                );
+            }
         }
 
         return back()->with('success', 'Absensi berhasil disimpan!');

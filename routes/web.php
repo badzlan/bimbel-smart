@@ -66,4 +66,6 @@ Route::prefix('/tutor')->middleware(['auth'])->group(function () {
     Route::get('/pertemuan', [AbsensiController::class, 'getPertemuanTutor']);
     Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailPertemuanTutor']);
     Route::post('/pertemuan/{id}', [AbsensiController::class, 'postPertemuanTutor']);
+    Route::get('/bulan', [AbsensiController::class, 'getBulanTutor']);
+    Route::post('/bulan', [AbsensiController::class, 'postBulanTutor']);
 });
