@@ -13,6 +13,7 @@ class Siswa extends Model
         'name',
         'school',
         'enter_date',
+        'class_id'
     ];
 
     public function kelas()

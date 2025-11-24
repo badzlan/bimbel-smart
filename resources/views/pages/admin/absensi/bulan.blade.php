@@ -138,7 +138,7 @@
                                         'border-gray-300 dark:border-gray-700': status === '',
                                         'bg-success-50 text-success-700 border-success-200 dark:bg-success-500/10 dark:text-success-400 dark:border-success-500/30': status === 'H',
                                         'bg-warning-50 text-warning-700 border-warning-200 dark:bg-warning-500/10 dark:text-warning-400 dark:border-warning-500/30': status === 'S',
-                                        'bg-blue-light-50 text-blue-light-500 border-blue-light-500 dark:bg-blue-500/10 dark:text-blue-light-500 dark:border-blue-500/30': status === 'I',
+                                        'bg-blue-light-50 text-blue-light-500 border-blue-light-200 dark:bg-blue-500/10 dark:text-blue-light-500 dark:border-blue-500/30': status === 'I',
                                         'bg-red-50 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/30': status === 'A'
                                     }">
                                     <option value="H">H</option>

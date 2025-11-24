@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -31,8 +32,11 @@ class SiswaController extends Controller
     }
     public function create()
     {
+        $kelas = Kelas::orderBy('id', 'desc')->get();
+
         return view('pages.admin.siswa.create', [
-            'title' => 'Tambah Siswa'
+            'title' => 'Tambah Siswa',
+            'kelas' => $kelas
         ]);
     }
     public function store(Request $request)
@@ -40,13 +44,15 @@ class SiswaController extends Controller
         $request->validate([
             'name' => 'required',
             'school' => 'required',
-            'enter_date' => 'required'
+            'enter_date' => 'required',
+            'kelas' => 'required'
         ]);
 
         Siswa::create([
             'name' => $request->name,
             'school' => $request->school,
-            'enter_date' => $request->enter_date
+            'enter_date' => $request->enter_date,
+            'class_id' => $request->kelas,
         ]);
 
         return redirect('/admin/siswa')->with('success', 'Berhasil menambahkan siswa!');
@@ -55,10 +61,12 @@ class SiswaController extends Controller
     public function edit(string $id)
     {
         $siswa = Siswa::findOrFail($id);
+        $kelas = Kelas::orderBy('id', 'desc')->get();
 
         return view('pages.admin.siswa.edit', [
             'title' => 'Edit Siswa',
-            'siswa' => $siswa
+            'siswa' => $siswa,
+            'kelas' => $kelas
         ]);
     }
 
