@@ -30,7 +30,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function feeTutor()
+    public function feeAdmin()
     {
         return view('pages.admin.fee', [
             'title' => 'Total Fee Tutor'

@@ -13,7 +13,6 @@ class AbsensiController extends Controller
 
     public function getPertemuan(Request $request)
     {
-
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
         $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
         $kelas = Kelas::orderBy('id', 'desc')->get();
@@ -25,7 +24,7 @@ class AbsensiController extends Controller
         ]);
     }
 
-    public function getDetailPertemuan(string $id, Request $request)
+    public function getDetailPertemuan(string $id)
     {
         $pertemuan = Jadwal::findOrFail($id);
         $siswa = Siswa::where('class_id', $pertemuan->class_id)->get();
@@ -124,6 +123,61 @@ class AbsensiController extends Controller
                     ]
                 );
             }
+        }
+
+        return back()->with('success', 'Absensi berhasil disimpan!');
+    }
+
+    public function getPertemuanTutor(Request $request)
+    {
+        $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
+        $kelas = Kelas::where('tutor_id', auth()->user()->id)->orderBy('id', 'desc')->get();
+
+        return view('pages.tutor.absensi.pertemuan', [
+            'title' => 'Absen Per Pertemuan',
+            'pertemuan' => !$isComplete ? [] : $pertemuan,
+            'kelas' => $kelas
+        ]);
+    }
+
+    public function getDetailPertemuanTutor(string $id)
+    {
+        $pertemuan = Jadwal::findOrFail($id);
+        $siswa = Siswa::where('class_id', $pertemuan->class_id)->get();
+
+        $absensi = Absensi::where('class_id', $pertemuan->class_id)
+            ->where('pertemuan_id', $id)
+            ->get()
+            ->keyBy('siswa_id');
+
+
+        return view('pages.tutor.absensi.detail', [
+            'title' => 'Detail Absensi',
+            'pertemuan' => $pertemuan,
+            'siswa' => $siswa,
+            'absensi' => $absensi
+        ]);
+    }
+
+    public function postPertemuanTutor(string $id, Request $request)
+    {
+        $pertemuan = Jadwal::findOrFail($id);
+        $attendance = $request->attendance;
+
+        foreach ($attendance as $siswa_id => $value) {
+
+            Absensi::updateOrCreate(
+                [
+                    'siswa_id' => $siswa_id,
+                    'class_id' => $pertemuan->class_id,
+                    'pertemuan_id' => $pertemuan->id,
+                    'tutor_id' => $pertemuan->kelas->tutor_id
+                ],
+                [
+                    'attendance' => $value
+                ]
+            );
         }
 
         return back()->with('success', 'Absensi berhasil disimpan!');

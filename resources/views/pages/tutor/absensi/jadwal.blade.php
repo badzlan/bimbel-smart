@@ -125,7 +125,7 @@
 
     @push('scripts')
         <script>
-            const BASE_URL = "/admin/jadwal";
+            const BASE_URL = "/tutor/jadwal";
 
             const modal = document.getElementById('eventModal');
             const mainForm = document.getElementById('mainEventForm');

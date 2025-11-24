@@ -63,4 +63,7 @@ Route::prefix('/tutor')->middleware(['auth'])->group(function () {
     Route::get('/kelas/{id}', [KelasController::class, 'getTutorKelasDetail']);
 
     Route::get('/jadwal', [JadwalController::class, 'getTutorJadwal']);
+    Route::get('/pertemuan', [AbsensiController::class, 'getPertemuanTutor']);
+    Route::get('/pertemuan/{id}', [AbsensiController::class, 'getDetailPertemuanTutor']);
+    Route::post('/pertemuan/{id}', [AbsensiController::class, 'postPertemuanTutor']);
 });
