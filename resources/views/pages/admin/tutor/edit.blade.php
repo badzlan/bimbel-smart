@@ -111,7 +111,7 @@
                         <div class="mb-4 flex flex-col gap-2 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                                 <h3 id="total-fee" class="text-lg font-semibold text-gray-800 dark:text-white/90">
-                                    Total Fee : Rp. {{ number_format($total_tutor['fee'], 0, ',', '.') }}
+                                    Total Fee B : Rp. {{ number_format($total_tutor['fee'], 0, ',', '.') }}
                                 </h3>
                             </div>
                             <div class="flex flex-col gap-3 sm:flex-row sm:items-center">

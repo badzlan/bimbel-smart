@@ -135,8 +135,58 @@ class DashboardController extends Controller
 
     public function tutorDashboard()
     {
+        $id = auth()->user()->id;
+        $kelas = Kelas::where('tutor_id', $id)->get();
+
+        $total_kelas = Kelas::where('tutor_id', $id)->count();
+        // $total_siswa = Siswa::where('class_id', $kelas->pluck('id'))->count();
+
+        $absensi = Absensi::select(
+                'class_id',
+                DB::raw("SUM(CASE WHEN attendance = 'H' THEN 1 ELSE 0 END) as hadir"),
+                DB::raw("SUM(CASE WHEN attendance = 'S' THEN 1 ELSE 0 END) as sakit"),
+                DB::raw("SUM(CASE WHEN attendance = 'I' THEN 1 ELSE 0 END) as izin"),
+                DB::raw("SUM(CASE WHEN attendance = 'A' THEN 1 ELSE 0 END) as alpa")
+            )
+            ->whereIn('class_id', $kelas->pluck('id'))
+            ->whereYear('created_at', '2025')
+            ->whereMonth('created_at', '11')
+            ->groupBy('class_id')
+            ->get()
+            ->keyBy('class_id');
+
+        $totalTutor = [
+            'hadir' => 0,
+            'sakit' => 0,
+            'izin' => 0,
+            'alpa' => 0,
+            'fee' => 0,
+        ];
+
+        foreach ($kelas as $kelasItem) {
+            $data = $absensi->get($kelasItem->id);
+            $kelasItem->hadir = $data->hadir ?? 0;
+            $kelasItem->sakit = $data->sakit ?? 0;
+            $kelasItem->izin  = $data->izin  ?? 0;
+            $kelasItem->alpa  = $data->alpa  ?? 0;
+
+            // Hitung fee
+            $kelasItem->fee = ($kelasItem->hadir * 50000) + (($kelasItem->sakit + $kelasItem->izin) * 25000);
+
+            // Tambahkan ke total tutor
+            $totalTutor['hadir'] += $kelasItem->hadir;
+            $totalTutor['sakit'] += $kelasItem->sakit;
+            $totalTutor['izin']  += $kelasItem->izin;
+            $totalTutor['alpa']  += $kelasItem->alpa;
+            $totalTutor['fee']   += $kelasItem->fee;
+        }
+
         return view('pages.tutor.dashboard', [
-            'title' => 'Dashboard Tutor'
+            'title' => 'Dashboard Tutor',
+            'kelas' => $kelas,
+            'total_tutor' => $totalTutor,
+            'total_kelas' => $total_kelas,
+            // 'total_siswa' => $total_siswa
         ]);
     }
 
