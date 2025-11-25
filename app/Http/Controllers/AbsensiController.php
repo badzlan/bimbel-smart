@@ -14,7 +14,7 @@ class AbsensiController extends Controller
     public function getPertemuan(Request $request)
     {
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
-        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderBy('name', 'asc')->get();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(regexp_replace(name, '\\D', '', 'g') AS INTEGER) ASC")->get();
         $kelas = Kelas::orderBy('id', 'desc')->get();
 
         return view('pages.admin.absensi.pertemuan', [
