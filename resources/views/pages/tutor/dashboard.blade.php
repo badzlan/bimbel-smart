@@ -26,7 +26,7 @@
                 </svg>
             </div>
             <div>
-                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white/90">34</h3>
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white/90">{{ $total_siswa }}</h3>
                 <p class="flex items-center gap-3 text-gray-500 dark:text-gray-400">Total Siswa Saya</p>
             </div>
         </article>

@@ -139,7 +139,7 @@ class DashboardController extends Controller
         $kelas = Kelas::where('tutor_id', $id)->get();
 
         $total_kelas = Kelas::where('tutor_id', $id)->count();
-        // $total_siswa = Siswa::where('class_id', $kelas->pluck('id'))->count();
+        $total_siswa = Siswa::whereIn('class_id', $kelas->pluck('id'))->count();
 
         $absensi = Absensi::select(
                 'class_id',
@@ -186,7 +186,7 @@ class DashboardController extends Controller
             'kelas' => $kelas,
             'total_tutor' => $totalTutor,
             'total_kelas' => $total_kelas,
-            // 'total_siswa' => $total_siswa
+            'total_siswa' => $total_siswa
         ]);
     }
 
