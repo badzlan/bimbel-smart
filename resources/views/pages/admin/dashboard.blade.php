@@ -40,9 +40,8 @@
 
     {{-- Chart Section --}}
     <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 xl:col-span-7">
-            <!-- ====== Chart Six Start -->
-            <div class="rounded-2xl border border-gray-200 bg-white px-5 pt-5 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6">
+        <div class="col-span-12 xl:col-span-7 flex flex-col">
+            <div class="rounded-2xl border border-gray-200 bg-white px-5 pt-5 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6 flex-grow">
                 <div class="mb-4 flex items-center justify-between">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
                         Data Absensi per Bulan
@@ -53,7 +52,7 @@
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2441 6C10.2441 5.0335 11.0276 4.25 11.9941 4.25H12.0041C12.9706 4.25 13.7541 5.0335 13.7541 6C13.7541 6.9665 12.9706 7.75 12.0041 7.75H11.9941C11.0276 7.75 10.2441 6.9665 10.2441 6ZM10.2441 18C10.2441 17.0335 11.0276 16.25 11.9941 16.25H12.0041C12.9706 16.25 13.7541 17.0335 13.7541 18C13.7541 18.9665 12.9706 19.75 12.0041 19.75H11.9941C11.0276 19.75 10.2441 18.9665 10.2441 18ZM11.9941 10.25C11.0276 10.25 10.2441 11.0335 10.2441 12C10.2441 12.9665 11.0276 13.75 11.9941 13.75H12.0041C12.9706 13.75 13.7541 12.9665 13.7541 12C13.7541 11.0335 12.9706 10.25 12.0041 10.25H11.9941Z" fill=""></path>
                             </svg>
                         </button>
-                        <div x-show="openDropDown" @click.outside="openDropDown = false" class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-2xl border border-gray-200 bg-white p-2 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark">
+                        <div x-show="openDropDown" @click.outside="openDropDown = false" class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-2xl border border-gray-200 bg-white p-2 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark" style="display: none;">
                             <button class="flex w-full rounded-lg px-3 py-2 text-left text-theme-xs font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
                                 View More
                             </button>
@@ -64,15 +63,13 @@
                     </div>
                 </div>
                 <div class="custom-scrollbar max-w-full overflow-x-auto">
-                    <div id="chartSix" class="-ml-5 min-w-[700px] pl-2"></div>
+                    <div id="chartBar" class="-ml-5 min-w-[700px] pl-2"></div>
                 </div>
             </div>
-            <!-- ====== Chart Six End -->
         </div>
 
-        <div class="col-span-12 xl:col-span-5">
-            <!-- ====== Chart Seven Start -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+        <div class="col-span-12 xl:col-span-5 flex flex-col">
+            <div class="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-gray-800 dark:bg-white/[0.03] flex-grow flex flex-col">
                 <div class="flex items-center justify-between mb-9">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
                         Persentase Absensi Bulan Ini
@@ -83,7 +80,7 @@
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2441 6C10.2441 5.0335 11.0276 4.25 11.9941 4.25H12.0041C12.9706 4.25 13.7541 5.0335 13.7541 6C13.7541 6.9665 12.9706 7.75 12.0041 7.75H11.9941C11.0276 7.75 10.2441 6.9665 10.2441 6ZM10.2441 18C10.2441 17.0335 11.0276 16.25 11.9941 16.25H12.0041C12.9706 16.25 13.7541 17.0335 13.7541 18C13.7541 18.9665 12.9706 19.75 12.0041 19.75H11.9941C11.0276 19.75 10.2441 18.9665 10.2441 18ZM11.9941 10.25C11.0276 10.25 10.2441 11.0335 10.2441 12C10.2441 12.9665 11.0276 13.75 11.9941 13.75H12.0041C12.9706 13.75 13.7541 12.9665 13.7541 12C13.7541 11.0335 12.9706 10.25 12.0041 10.25H11.9941Z" fill=""></path>
                             </svg>
                         </button>
-                        <div x-show="openDropDown" @click.outside="openDropDown = false" class="absolute right-0 z-40 w-40 p-2 space-y-1 bg-white border border-gray-200 shadow-theme-lg dark:bg-gray-dark top-full rounded-2xl dark:border-gray-800">
+                        <div x-show="openDropDown" @click.outside="openDropDown = false" class="absolute right-0 z-40 w-40 p-2 space-y-1 bg-white border border-gray-200 shadow-theme-lg dark:bg-gray-dark top-full rounded-2xl dark:border-gray-800" style="display: none;">
                             <button class="flex w-full px-3 py-2 font-medium text-left text-gray-500 rounded-lg text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
                                 View More
                             </button>
@@ -93,23 +90,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="">
-                    {{-- Chart akan dirender di sini oleh JavaScript --}}
-                    <div id="chartSeven" class="flex justify-center mx-auto chartDarkStyle"></div>
+                <div class="flex-grow flex items-center justify-center">
+                    <div id="chartDonut" class="flex justify-center mx-auto chartDarkStyle"></div>
                 </div>
             </div>
-            <!-- ====== Chart Seven End -->
         </div>
     </div>
 
-    {{-- Tabel Transaksi --}}
-    <div class="grid grid-cols-1">
+    {{-- <div class="grid grid-cols-1">
         <div class="col-span-12">
             <div class="rounded-2xl border border-gray-200 bg-white pt-4 dark:border-gray-800 dark:bg-white/[0.03]">
                 <div class="mb-4 flex flex-col gap-2 px-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     <div>
                         <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
-                            Total Fee Tutor
+                            Total Fee Tutor Bulan Ini
                         </h3>
                     </div>
                     <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -142,11 +136,11 @@
                                         <p class="text-theme-sm text-gray-500 dark:text-gray-400">Total Fee</p>
                                     </div>
                                 </th>
-                                {{-- <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
+                                <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
                                     <div class="flex items-center">
                                         <p class="text-theme-sm text-gray-500 dark:text-gray-400">Status Pembayaran</p>
                                     </div>
-                                </th> --}}
+                                </th>
                                 <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
                                     <div class="flex items-center">
                                         <p class="text-theme-sm text-gray-500 dark:text-gray-400">Aksi</p>
@@ -155,31 +149,20 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-                            @php
-                                $transactions = [
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor A', 'fee' => 'Rp 200.000', 'status' => 'sudah-dibayar'],
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor B', 'fee' => 'Rp 50.000', 'status' => 'belum-dibayar'],
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor C', 'fee' => 'Rp 3.000.000', 'status' => 'belum-dibayar'],
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor D', 'fee' => 'Rp 750.000', 'status' => 'sudah-dibayar'],
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor E', 'fee' => 'Rp 1.650.000', 'status' => 'belum-dibayar'],
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor F', 'fee' => 'Rp 450.000', 'status' => 'sudah-dibayar'],
-                                    ['image' => 'images/admin.jpg', 'name' => 'Tutor G', 'fee' => 'Rp 600.000', 'status' => 'sudah-dibayar'],
-                                ];
-                            @endphp
-
-                            @foreach ($transactions as $transaction)
+                            @forelse ($tutorFees as $tutor)
                             <tr>
                                 <td class="w-14 px-5 py-4 whitespace-nowrap">
+                                    <span class="text-gray-500 text-sm">{{ $loop->iteration }}</span>
                                 </td>
                                 <td class="py-3 pr-5 whitespace-nowrap sm:pr-6">
                                     <div class="col-span-3 flex items-center">
                                         <div class="flex items-center gap-3">
                                             <div class="h-8 w-8">
-                                                <img src="{{ asset($transaction['image']) }}" alt="brand" class="h-8 w-8 rounded-full object-cover">
+                                                <img src="{{ $tutor['image'] ? asset($tutor['image']) : 'https://ui-avatars.com/api/?name='.urlencode($tutor['name']).'&background=random' }}" alt="{{ $tutor['name'] }}" class="h-8 w-8 rounded-full object-cover">
                                             </div>
                                             <div>
                                                 <span class="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
-                                                    {{ $transaction['name'] }}
+                                                    {{ $tutor['name'] }}
                                                 </span>
                                             </div>
                                         </div>
@@ -187,46 +170,33 @@
                                 </td>
                                 <td class="px-5 py-3 whitespace-nowrap sm:px-6">
                                     <div class="flex items-center">
-                                        <p class="text-theme-sm text-gray-700 dark:text-gray-400">
-                                            {{ $transaction['fee'] }}
+                                        <p class="text-theme-sm font-bold text-gray-700 dark:text-gray-400">
+                                            {{ $tutor['total_fee_formatted'] }}
                                         </p>
                                     </div>
                                 </td>
-                                {{-- <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                    <div class="flex items-center">
-                                        @if ($transaction['status'] == 'sudah-dibayar')
-                                            <p class="bg-success-50 text-theme-xs text-success-600 dark:bg-success-500/15 dark:text-success-500 rounded-full px-2 py-0.5 font-medium">
-                                                Sudah Dibayar
-                                            </p>
-                                        @elseif ($transaction['status'] == 'belum-dibayar')
-                                            <p class="bg-warning-50 text-theme-xs text-warning-600 dark:bg-warning-500/15 dark:text-warning-400 rounded-full px-2 py-0.5 font-medium">
-                                                Belum Dibayar
-                                            </p>
-                                        @endif
-                                    </div>
-                                </td> --}}
                                 <td class="px-5 py-4 whitespace-nowrap">
                                     <div x-data="{ open: false }" class="relative flex justify-start">
                                         <button @click="open = !open" class="text-gray-500 dark:text-gray-400">
-                                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24"
-                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M5.99902 10.245C6.96552 10.245 7.74902 11.0285 7.74902 11.995V12.005C7.74902 12.9715 6.96552 13.755 5.99902 13.755C5.03253 13.755 4.24902 12.9715 4.24902 12.005V11.995C4.24902 11.0285 5.03253 10.245 5.99902 10.245ZM17.999 10.245C18.9655 10.245 19.749 11.0285 19.749 11.995V12.005C19.749 12.9715 18.9655 13.755 17.999 13.755C17.0325 13.755 16.249 12.9715 16.249 12.005V11.995C16.249 11.0285 17.0325 10.245 17.999 10.245ZM13.749 11.995C13.749 11.0285 12.9655 10.245 11.999 10.245C11.0325 10.245 10.249 11.0285 10.249 11.995V12.005C10.249 12.9715 11.0325 13.755 11.999 13.755C12.9655 13.755 13.749 12.9715 13.749 12.005V11.995Z"
-                                                    fill="currentColor"></path>
+                                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.99902 10.245C6.96552 10.245 7.74902 11.0285 7.74902 11.995V12.005C7.74902 12.9715 6.96552 13.755 5.99902 13.755C5.03253 13.755 4.24902 12.9715 4.24902 12.005V11.995C4.24902 11.0285 5.03253 10.245 5.99902 10.245ZM17.999 10.245C18.9655 10.245 19.749 11.0285 19.749 11.995V12.005C19.749 12.9715 18.9655 13.755 17.999 13.755C17.0325 13.755 16.249 12.9715 16.249 12.005V11.995C16.249 11.0285 17.0325 10.245 17.999 10.245ZM13.749 11.995C13.749 11.0285 12.9655 10.245 11.999 10.245C11.0325 10.245 10.249 11.0285 10.249 11.995V12.005C10.249 12.9715 11.0325 13.755 11.999 13.755C12.9655 13.755 13.749 12.9715 13.749 12.005V11.995Z" fill="currentColor"></path>
                                             </svg>
                                         </button>
-                                        <div x-show="open" @click.outside="open = false"
-                                            class="shadow-theme-lg absolute right-0 z-10 mt-8 w-40 space-y-1 rounded-lg border border-gray-200 bg-white p-2 dark:border-gray-800 dark:bg-gray-900"
-                                            style="display: none;">
-                                            <a href="/admin/kelas/{{ $transaction['name'] }}/edit"
-                                                class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
+                                        <div x-show="open" @click.outside="open = false" class="shadow-theme-lg absolute right-0 z-10 mt-8 w-40 space-y-1 rounded-lg border border-gray-200 bg-white p-2 dark:border-gray-800 dark:bg-gray-900" style="display: none;">
+                                            <a href="/admin/tutor/{{ $tutor['id'] }}/edit#total-fee" class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300">
                                                 Lihat Detail Fee
                                             </a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="4" class="px-5 py-4 text-center text-gray-500">
+                                    Belum ada data fee tutor bulan ini.
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -289,47 +259,154 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
 
 @push('scripts')
 <script>
+    // Definisikan warna di satu tempat agar konsisten
+    // Urutan: Hadir (Hijau), Sakit (Kuning), Izin (Biru), Alpa (Merah)
+    const chartColors = ['#10B981', '#FBBF24', '#3C50E0', '#EF4444'];
 
-          var options = {
-          series: [{
-          name: 'Alpa',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+    // --- CHART BAR (Data Absensi per Bulan Real dari Controller) ---
+    var options = {
+        series: [{
+            name: 'Hadir',
+            data: @json($chartHadir)
         }, {
-          name: 'Hadir',
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+            name: 'Sakit',
+            data: @json($chartSakit)
         }, {
-          name: 'Izin',
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+            name: 'Izin',
+            data: @json($chartIzin)
+        }, {
+            name: 'Alpa',
+            data: @json($chartAlpa)
         }],
-          chart: {
-          type: 'bar',
+        chart: {
+            type: 'bar',
+            height: 400,
+            stacked: true, // <--- INI KUNCINYA: Mengaktifkan mode bertumpuk
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: chartColors, // Menggunakan warna yang sama
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                borderRadius: 4, // Memberikan sedikit lengkungan agar manis
+                columnWidth: '50%', // Mengatur lebar batang
+                dataLabels: {
+                    total: {
+                        enabled: true, // Opsional: Menampilkan angka total di atas batang
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 900
+                        }
+                    }
+                }
+            },
         },
         dataLabels: {
-          enabled: false
+            enabled: false // Matikan label di dalam warna agar tidak penuh sesak
+        },
+        stroke: {
+            show: true,
+            width: 1, // Garis tipis pemisah antar warna
+            colors: ['#fff'] // Warna pemisah putih
         },
         xaxis: {
-          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+        },
+        legend: {
+            position: 'top', // Memindahkan legend ke atas agar area chart lebih luas
+            horizontalAlign: 'right',
         },
         fill: {
-          opacity: 1
+            opacity: 1
         },
         tooltip: {
-          y: {
-            formatter: function (val) {
-              return "$ " + val + " thousands"
+            y: {
+                formatter: function (val) {
+                    return val + " Siswa"
+                }
             }
-          }
         }
-        };
+    };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+    var chart = new ApexCharts(document.querySelector("#chartBar"), options);
+    chart.render();
+
+
+    // --- CHART DONUT (Total Persentase Real) ---
+    var optionsDonut = {
+        // Mengambil data total [H, S, I, A] dari Controller
+        series: @json($donutData),
+        labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'],
+        chart: {
+            type: 'donut',
+            height: 400,
+        },
+        colors: chartColors,
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '75%',
+                    labels: {
+                        show: true,
+                        name: {
+                            show: true,
+                            offsetY: -10,
+                        },
+                        value: {
+                            show: true,
+                            fontSize: '24px',
+                            fontWeight: 600,
+                            offsetY: 5,
+                        },
+                        total: {
+                            show: true,
+                            label: 'Total Absensi',
+                            fontSize: '16px',
+                            fontWeight: 400,
+                            formatter: function (w) {
+                                return w.globals.seriesTotals.reduce((a, b) => a + b, 0)
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            position: 'bottom',
+            fontFamily: 'inherit',
+            itemMargin: {
+                horizontal: 10,
+                vertical: 5
+            }
+        },
+        responsive: [{
+            breakpoint: 640,
+            options: {
+                chart: {
+                    width: '100%'
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+
+    var chartDonut = new ApexCharts(document.querySelector("#chartDonut"), optionsDonut);
+    chartDonut.render();
 </script>
 @endpush
-

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Models\Kelas;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -83,9 +84,11 @@ class TutorController extends Controller
                 DB::raw("SUM(CASE WHEN attendance = 'A' THEN 1 ELSE 0 END) as alpa")
             )
             ->whereIn('class_id', $kelas->pluck('id'))
+            ->whereYear('created_at', '2025')
+            ->whereMonth('created_at', '11')
             ->groupBy('class_id')
             ->get()
-            ->keyBy('class_id'); // keyBy supaya gampang akses per kelas
+            ->keyBy('class_id');
 
         $totalTutor = [
             'hadir' => 0,
