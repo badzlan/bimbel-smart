@@ -84,8 +84,8 @@ class TutorController extends Controller
                 DB::raw("SUM(CASE WHEN attendance = 'A' THEN 1 ELSE 0 END) as alpa")
             )
             ->whereIn('class_id', $kelas->pluck('id'))
-            ->whereYear('created_at', '2025')
-            ->whereMonth('created_at', '11')
+            ->whereYear('created_at', date('Y'))
+            ->whereMonth('created_at', date('m'))
             ->groupBy('class_id')
             ->get()
             ->keyBy('class_id');
