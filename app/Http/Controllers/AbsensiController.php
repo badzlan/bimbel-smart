@@ -14,7 +14,7 @@ class AbsensiController extends Controller
     public function getPertemuan(Request $request)
     {
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
-        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(regexp_replace(name, '\\D', '', 'g') AS INTEGER) ASC")->get();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(REGEXP_REPLACE(name, '[^0-9]', '') AS UNSIGNED) ASC")->get();
         $kelas = Kelas::orderBy('id', 'desc')->get();
 
         return view('pages.admin.absensi.pertemuan', [
@@ -64,7 +64,7 @@ class AbsensiController extends Controller
     {
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
         $kelas = Kelas::orderBy('id', 'desc')->get();
-        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(regexp_replace(name, '\\D', '', 'g') AS INTEGER) ASC")->get();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(REGEXP_REPLACE(name, '[^0-9]', '') AS UNSIGNED) ASC")->get();
         $siswa = Siswa::where('class_id', $request->kelas)->get();
         $absensi = Absensi::whereIn('siswa_id', $siswa->pluck('id'))->whereIn('pertemuan_id', $pertemuan->pluck('id'))->get();
 
@@ -124,7 +124,7 @@ class AbsensiController extends Controller
     public function getPertemuanTutor(Request $request)
     {
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
-        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(regexp_replace(name, '\\D', '', 'g') AS INTEGER) ASC")->get();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(REGEXP_REPLACE(name, '[^0-9]', '') AS UNSIGNED) ASC")->get();
         $kelas = Kelas::where('tutor_id', auth()->user()->id)->orderBy('id', 'desc')->get();
 
         return view('pages.tutor.absensi.pertemuan', [
@@ -174,7 +174,7 @@ class AbsensiController extends Controller
     {
         $isComplete = $request->filled('tahun') && $request->filled('bulan') && $request->filled('kelas');
         $kelas = Kelas::where('tutor_id', auth()->user()->id)->orderBy('id', 'desc')->get();
-        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(regexp_replace(name, '\\D', '', 'g') AS INTEGER) ASC")->get();
+        $pertemuan = Jadwal::query()->whereYear('date', $request->tahun)->whereMonth('date', $request->bulan)->where('class_id', $request->kelas)->orderByRaw("CAST(REGEXP_REPLACE(name, '[^0-9]', '') AS UNSIGNED) ASC")->get();
         $siswa = Siswa::where('class_id', $request->kelas)->get();
         $absensi = Absensi::whereIn('siswa_id', $siswa->pluck('id'))->whereIn('pertemuan_id', $pertemuan->pluck('id'))->get();
 
